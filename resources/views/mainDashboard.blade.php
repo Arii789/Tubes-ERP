@@ -195,7 +195,6 @@
                     </li>
                 </ul>
             </li><!-- End Components Nav -->
-
     </aside><!-- End Sidebar-->
 
     @yield('content')

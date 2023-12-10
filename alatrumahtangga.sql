@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Nov 2023 pada 09.33
--- Versi server: 10.4.28-MariaDB
--- Versi PHP: 8.2.4
+-- Generation Time: Dec 10, 2023 at 12:34 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `bahan`
+-- Table structure for table `bahan`
 --
 
 CREATE TABLE `bahan` (
@@ -39,18 +39,18 @@ CREATE TABLE `bahan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `bahan`
+-- Dumping data for table `bahan`
 --
 
 INSERT INTO `bahan` (`id`, `nama`, `kode`, `harga`, `stok`, `gambar`, `created_at`, `updated_at`) VALUES
 (3, 'plastik', 'plt', 500, 8, '1698323593_lb.jpg', '2023-10-26 05:33:13', '2023-11-27 09:34:49'),
 (4, 'Tali', 'T', 250, 5, '1698324424_tali.jpg', '2023-10-26 05:47:04', '2023-11-27 09:42:15'),
-(5, 'Gagang Sapu dan Pel', 'GSP', 5000, 296, '1698652334_gagang sapu dan pel.jpeg', '2023-10-30 00:52:14', '2023-11-20 07:59:48');
+(5, 'Gagang Sapu dan Pel', 'GSP', 5000, 298, '1698652334_gagang sapu dan pel.jpeg', '2023-10-30 00:52:14', '2023-12-01 06:23:26');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `bom`
+-- Table structure for table `bom`
 --
 
 CREATE TABLE `bom` (
@@ -61,7 +61,7 @@ CREATE TABLE `bom` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `bom`
+-- Dumping data for table `bom`
 --
 
 INSERT INTO `bom` (`kode_bom`, `kode_produk`, `kuantitas`, `total_harga`) VALUES
@@ -72,7 +72,7 @@ INSERT INTO `bom` (`kode_bom`, `kode_produk`, `kuantitas`, `total_harga`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `bom_list`
+-- Table structure for table `bom_list`
 --
 
 CREATE TABLE `bom_list` (
@@ -84,7 +84,7 @@ CREATE TABLE `bom_list` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `bom_list`
+-- Dumping data for table `bom_list`
 --
 
 INSERT INTO `bom_list` (`kode_bom_list`, `kode_bom`, `kode_bahan`, `kuantitas`, `satuan`) VALUES
@@ -96,7 +96,7 @@ INSERT INTO `bom_list` (`kode_bom_list`, `kode_bom`, `kode_bahan`, `kuantitas`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -112,7 +112,7 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -122,7 +122,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -136,7 +136,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mo`
+-- Table structure for table `mo`
 --
 
 CREATE TABLE `mo` (
@@ -148,7 +148,7 @@ CREATE TABLE `mo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `mo`
+-- Dumping data for table `mo`
 --
 
 INSERT INTO `mo` (`kode_mo`, `kode_bom`, `kuantitas`, `tanggal`, `status`) VALUES
@@ -161,7 +161,7 @@ INSERT INTO `mo` (`kode_mo`, `kode_bom`, `kuantitas`, `tanggal`, `status`) VALUE
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `password_resets`
+-- Table structure for table `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -173,7 +173,32 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `personal_access_tokens`
+-- Table structure for table `pembeli`
+--
+
+CREATE TABLE `pembeli` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `kontak` varchar(15) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `pembeli`
+--
+
+INSERT INTO `pembeli` (`id`, `nama`, `kontak`, `alamat`, `created_at`, `updated_at`) VALUES
+(1, 'Agus Setiawan', '0894372839422', 'Dsn Jetak RT 03 RW 02 Ds Karangjati Kec Pandaan, Pasuruan, Jawa Timur', NULL, NULL),
+(3, 'Muhammad Reza', '0895373849244', 'Jln. Raya Sigura Gura No.40 Malang', NULL, NULL),
+(5, 'Soolikin', '087654321234', 'Mojokerto, jawa timur, indonesia', NULL, NULL),
+(6, 'Cece Tompel', '0812345676543', 'Surabaya, jawa timur, indonesia', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `personal_access_tokens`
 --
 
 CREATE TABLE `personal_access_tokens` (
@@ -191,7 +216,7 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `produk`
+-- Table structure for table `produk`
 --
 
 CREATE TABLE `produk` (
@@ -206,18 +231,18 @@ CREATE TABLE `produk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `produk`
+-- Dumping data for table `produk`
 --
 
 INSERT INTO `produk` (`id`, `nama`, `kode`, `harga`, `stok`, `gambar`, `created_at`, `updated_at`) VALUES
-(4, 'Sapu Lidi', 'SL', 2000, NULL, '1698074102_ITN.jpg', NULL, NULL),
-(5, 'Tempat Sampah', 'TS', 7000, 2, '1698323065_TEMPAT-SAMPAH.jpg', NULL, NULL),
+(4, 'Sapu Lidi', 'SL', 2000, -12, '1698074102_ITN.jpg', NULL, NULL),
+(5, 'Tempat Sampah', 'TS', 7000, -29, '1698323065_TEMPAT-SAMPAH.jpg', NULL, NULL),
 (6, 'Pel Lantai', 'PL', 15000, 4, '1698652038_pel.jpeg', NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `rfq`
+-- Table structure for table `rfq`
 --
 
 CREATE TABLE `rfq` (
@@ -230,19 +255,16 @@ CREATE TABLE `rfq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `rfq`
+-- Dumping data for table `rfq`
 --
 
 INSERT INTO `rfq` (`kode_rfq`, `kode_vendor`, `tanggal_order`, `status`, `total_harga`, `metode_pembayaran`) VALUES
-('PO-001', 2, '2023-11-19', 5, 5000, 2),
-('PO-002', 3, '2023-11-19', 4, 1000, 0),
-('PO-003', 2, '2023-11-20', 2, 1250, 0),
-('PO-005', 2, '2023-11-22', 1, 0, 0);
+('A011', 2, '2023-12-01', 5, 10000, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `rfq_list`
+-- Table structure for table `rfq_list`
 --
 
 CREATE TABLE `rfq_list` (
@@ -253,18 +275,67 @@ CREATE TABLE `rfq_list` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `rfq_list`
+-- Dumping data for table `rfq_list`
 --
 
 INSERT INTO `rfq_list` (`kode_rfq_list`, `kode_rfq`, `kode_bahan`, `kuantitas`) VALUES
-(1, 'PO-001', '3', 10),
-(2, 'PO-002', '3', 2),
-(6, 'PO-003', '4', 5);
+(8, 'A011', '5', 2);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `temp_produce`
+-- Table structure for table `sq`
+--
+
+CREATE TABLE `sq` (
+  `kode_sq` varchar(200) NOT NULL,
+  `kode_pembeli` int(11) NOT NULL,
+  `tanggal_order` varchar(20) NOT NULL,
+  `status` int(11) NOT NULL,
+  `total_harga` double NOT NULL,
+  `metode_pembayaran` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `sq`
+--
+
+INSERT INTO `sq` (`kode_sq`, `kode_pembeli`, `tanggal_order`, `status`, `total_harga`, `metode_pembayaran`) VALUES
+('A001', 6, '2023-12-10', 2, 0, 0),
+('A012', 1, '2023-12-10', 5, 241000, 2),
+('A013', 6, '2023-12-10', 1, 217000, 0),
+('S-001', 1, '2023-01-07', 5, 30000, 1),
+('S-003', 4, '2023-01-10', 5, 80000, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sq_list`
+--
+
+CREATE TABLE `sq_list` (
+  `kode_sq_list` int(11) NOT NULL,
+  `kode_sq` varchar(20) NOT NULL,
+  `kode_produk` varchar(20) NOT NULL,
+  `kuantitas` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `sq_list`
+--
+
+INSERT INTO `sq_list` (`kode_sq_list`, `kode_sq`, `kode_produk`, `kuantitas`) VALUES
+(8, 'S-001', '3', 10),
+(20, 'S-003', '4', 10),
+(21, 'S-003', '3', 10),
+(25, 'A012', '5', 31),
+(26, 'A012', '4', 12),
+(28, 'A013', '5', 31);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `temp_produce`
 --
 
 CREATE TABLE `temp_produce` (
@@ -276,7 +347,7 @@ CREATE TABLE `temp_produce` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -293,7 +364,7 @@ CREATE TABLE `users` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `vendor`
+-- Table structure for table `vendor`
 --
 
 CREATE TABLE `vendor` (
@@ -306,7 +377,7 @@ CREATE TABLE `vendor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `vendor`
+-- Dumping data for table `vendor`
 --
 
 INSERT INTO `vendor` (`id`, `nama`, `kontak`, `alamat`, `created_at`, `updated_at`) VALUES
@@ -318,51 +389,57 @@ INSERT INTO `vendor` (`id`, `nama`, `kontak`, `alamat`, `created_at`, `updated_a
 --
 
 --
--- Indeks untuk tabel `bahan`
+-- Indexes for table `bahan`
 --
 ALTER TABLE `bahan`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `nama` (`nama`);
 
 --
--- Indeks untuk tabel `bom`
+-- Indexes for table `bom`
 --
 ALTER TABLE `bom`
   ADD PRIMARY KEY (`kode_bom`);
 
 --
--- Indeks untuk tabel `bom_list`
+-- Indexes for table `bom_list`
 --
 ALTER TABLE `bom_list`
   ADD PRIMARY KEY (`kode_bom_list`);
 
 --
--- Indeks untuk tabel `failed_jobs`
+-- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indeks untuk tabel `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `mo`
+-- Indexes for table `mo`
 --
 ALTER TABLE `mo`
   ADD PRIMARY KEY (`kode_mo`);
 
 --
--- Indeks untuk tabel `password_resets`
+-- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indeks untuk tabel `personal_access_tokens`
+-- Indexes for table `pembeli`
+--
+ALTER TABLE `pembeli`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
@@ -370,7 +447,7 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Indeks untuk tabel `produk`
+-- Indexes for table `produk`
 --
 ALTER TABLE `produk`
   ADD PRIMARY KEY (`id`),
@@ -378,96 +455,120 @@ ALTER TABLE `produk`
   ADD UNIQUE KEY `stok` (`stok`);
 
 --
--- Indeks untuk tabel `rfq`
+-- Indexes for table `rfq`
 --
 ALTER TABLE `rfq`
   ADD PRIMARY KEY (`kode_rfq`);
 
 --
--- Indeks untuk tabel `rfq_list`
+-- Indexes for table `rfq_list`
 --
 ALTER TABLE `rfq_list`
   ADD PRIMARY KEY (`kode_rfq_list`);
 
 --
--- Indeks untuk tabel `temp_produce`
+-- Indexes for table `sq`
+--
+ALTER TABLE `sq`
+  ADD PRIMARY KEY (`kode_sq`);
+
+--
+-- Indexes for table `sq_list`
+--
+ALTER TABLE `sq_list`
+  ADD PRIMARY KEY (`kode_sq_list`);
+
+--
+-- Indexes for table `temp_produce`
 --
 ALTER TABLE `temp_produce`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Indeks untuk tabel `vendor`
+-- Indexes for table `vendor`
 --
 ALTER TABLE `vendor`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `bahan`
+-- AUTO_INCREMENT for table `bahan`
 --
 ALTER TABLE `bahan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `bom_list`
+-- AUTO_INCREMENT for table `bom_list`
 --
 ALTER TABLE `bom_list`
   MODIFY `kode_bom_list` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `failed_jobs`
+-- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `personal_access_tokens`
+-- AUTO_INCREMENT for table `pembeli`
+--
+ALTER TABLE `pembeli`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `produk`
+-- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `rfq_list`
+-- AUTO_INCREMENT for table `rfq_list`
 --
 ALTER TABLE `rfq_list`
-  MODIFY `kode_rfq_list` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `kode_rfq_list` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `temp_produce`
+-- AUTO_INCREMENT for table `sq_list`
+--
+ALTER TABLE `sq_list`
+  MODIFY `kode_sq_list` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT for table `temp_produce`
 --
 ALTER TABLE `temp_produce`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `vendor`
+-- AUTO_INCREMENT for table `vendor`
 --
 ALTER TABLE `vendor`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;

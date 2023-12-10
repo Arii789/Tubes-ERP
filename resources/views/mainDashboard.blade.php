@@ -195,6 +195,56 @@
                     </li>
                 </ul>
             </li><!-- End Components Nav -->
+            <li class="nav-heading">Sales</li>
+
+            <li class="nav-item">
+              <a class="nav-link collapsed" data-bs-target="#pembeli-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-menu-button-wide"></i><span>Pembeli</span><i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="pembeli-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                  <a href="{{ url('pembeli') }}">
+                    <i class="bi bi-circle"></i><span>Data Pembeli</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('pembeli/tambah') }}">
+                    <i class="bi bi-circle"></i><span>Tambah Pembeli</span>
+                  </a>
+                </li>
+              </ul>
+            </li><!-- End Tables Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#quotation-nav" data-bs-toggle="collapse" href="#">
+                  <i class="bi bi-menu-button-wide"></i><span>Sales Quotation</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="quotation-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                  <li>
+                    <a href="{{ url('sq') }}">
+                      <i class="bi bi-circle"></i><span>Data Sales Quotation</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ url('sq-input') }}">
+                      <i class="bi bi-circle"></i><span>Tambah Sales Quotation</span>
+                    </a>
+                  </li>
+                </ul>
+              </li><!-- End Forms Nav -->
+        
+              <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#order-nav" data-bs-toggle="collapse" href="#">
+                  <i class="bi bi-menu-button-wide"></i><span>Sales Orders</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="order-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                  <li>
+                    <a href="{{ url('so') }}">
+                      <i class="bi bi-circle"></i><span>Data Sales Order</span>
+                    </a>
+                  </li>
+                </ul>
+              </li><!-- End Forms Nav -->
     </aside><!-- End Sidebar-->
 
     @yield('content')

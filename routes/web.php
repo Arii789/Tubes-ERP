@@ -7,6 +7,8 @@ use App\Http\Controllers\BOMController;
 use App\Http\Controllers\MoController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\RfqController;
+use App\Http\Controllers\PembeliController;
+use App\Http\Controllers\SQController;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,3 +87,26 @@ Route::post('vendor/simpan', [VendorController::class, 'store'])->name('vendor-s
 Route::get('vendor/edit/{id}', [VendorController::class, 'edit']);
 Route::put('vendor/update/{id}', [VendorController::class, 'update'])->name('vendor-update');
 Route::get('vendor/delete/{id}', [VendorController::class, 'destroy'])->name('vendor-delete');
+
+Route::get('pembeli', [PembeliController::class, 'index']);
+Route::get('pembeli/tambah', [PembeliController::class, 'create']);
+Route::post('pembeli/simpan', [PembeliController::class, 'store'])->name('pembeli-simpan');
+Route::get('pembeli/edit/{id}', [PembeliController::class, 'edit']);
+Route::put('pembeli/update/{id}', [PembeliController::class, 'update'])->name('pembeli-update');
+Route::get('pembeli/delete/{id}', [PembeliController::class, 'destroy'])->name('pembeli-delete');
+
+Route::get('sq', [SQController::class,'sq']);
+Route::get('so', [SQController::class,'so']);
+Route::get('sq-input', [SQController::class,'sqInput']);
+Route::post('sq-input', [SQController::class,'upload']);
+Route::get('sq-input-item/{kode_sq}', [SQController::class,'sqInputItems']);
+Route::post('sq-input-item', [SQController::class,'sqUploadItems']);
+Route::get('so-input-item/{kode_sq}', [SQController::class,'soInputItems']);
+Route::post('so-input-item', [SQController::class,'soUploadItems']);
+Route::post('sq/save', [SQController::class,'sqSave']);
+Route::post('sq/saveSo', [SQController::class,'sqSaveSo']);
+Route::post('sq/invoice', [SQController::class,'sqCreateInvoice']);
+Route::post('sq/delivery', [SQController::class,'sqDelivery']);
+Route::get('so-invoice/{kode_sq}', [SQController::class,'getPDF']);
+Route::get('sq-delete-item/{kode_sq_list}', [SQController::class,'deleteListSQ']);
+Route::get('sq-delete/{kode_sq}', [SQController::class,'deleteSQ']);

@@ -244,7 +244,22 @@
                     </a>
                   </li>
                 </ul>
-              </li><!-- End Forms Nav -->
+            </li><!-- End Forms Nav -->
+      
+            <li class="nav-heading">Accounting</li>
+      
+            <li class="nav-item">
+              <a class="nav-link collapsed" data-bs-target="#accounting-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-menu-button-wide"></i><span>Accounting</span><i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="accounting-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                  <a href="/accounting">
+                    <i class="bi bi-circle"></i><span>Data Accounting</span>
+                  </a>
+                </li>
+              </ul>
+            </li><!-- End Tables Nav -->
     </aside><!-- End Sidebar-->
 
     @yield('content')

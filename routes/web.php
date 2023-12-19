@@ -9,6 +9,7 @@ use App\Http\Controllers\VendorController;
 use App\Http\Controllers\RfqController;
 use App\Http\Controllers\PembeliController;
 use App\Http\Controllers\SQController;
+use App\Http\Controllers\AccountingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +61,6 @@ Route::get('Manufacture/mo', [MoController::class,'manufacture']);
 Route::get('Manufacture/mo-input', [MoController::class,'manufactureOrder']);
 Route::post('Manufacture/mo-input', [MoController::class,'moUpload']);
 Route::put('Manufacture/mo/update/{kode_mo}', [MoController::class,'moUpdate']);
-// Route::put('/home/mo/confirm/{kode_mo}', [MoController::class,'moConfirm']);
 Route::get('Manufacture/mo-ca/{kode_bom}', [MoController::class,'caItems']);
 Route::post('Manufacture/mo-produce/{kode_mo}', [MoController::class,'moProduce']);
 Route::post('Manufacture/mo-done/{kode_mo}', [MoController::class,'moProsesProduce']);
@@ -110,3 +110,13 @@ Route::post('sq/delivery', [SQController::class,'sqDelivery']);
 Route::get('so-invoice/{kode_sq}', [SQController::class,'getPDF']);
 Route::get('sq-delete-item/{kode_sq_list}', [SQController::class,'deleteListSQ']);
 Route::get('sq-delete/{kode_sq}', [SQController::class,'deleteSQ']);
+
+Route::get('/accounting', [AccountingController::class,'index']);
+Route::get('/accounting-invoicing', [AccountingController::class,'invoicing']);
+Route::get('/accounting-invoicing/tampil-pertanggal/{tglawal}/{tglakhir}', [AccountingController::class,'tampilInvoicePertanggal']);
+Route::get('/accounting-invoicing/cetak/', [AccountingController::class,'cetakLaporan']);
+Route::get('/accounting-invoicing/cetak-pertanggal/{tglawal}/{tglakhir}', [AccountingController::class,'cetakLaporanPertanggal']);
+Route::get('/accounting-bill', [AccountingController::class,'bill']);
+Route::get('/accounting-bill/tampil-pertanggal/{tglawal}/{tglakhir}', [AccountingController::class,'tampilBillPertanggal']);
+Route::get('/accounting-bill/cetak/', [AccountingController::class,'cetakLaporanBill']);
+Route::get('/accounting-bill/cetak-pertanggal/{tglawal}/{tglakhir}', [AccountingController::class,'cetakLaporanBillPertanggal']);

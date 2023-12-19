@@ -25,12 +25,6 @@ use App\Http\Controllers\AccountingController;
 Route::get('/', function () {
     return view('index');
 });
-// Route::get('bom/input-bom', function () {
-//     return view('BOM/input-bom');
-// });
-// Route::get('bom/bom', function () {
-//     return view('BOM/bom');
-// });
 
 Route::get('Manufacture/produk', [ProdukController::class, 'index']);
 Route::get('Manufacture/input-produk', [ProdukController::class, 'create']);

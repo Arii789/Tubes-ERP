@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\produk;
 use Illuminate\Http\Request;
-use File;
+use Illuminate\Support\Facades\File;
+
 
 class ProdukController extends Controller
 {
@@ -32,7 +33,11 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        return view ('Manufacture.input-produk');
+        $lastProduct = Produk::orderBy('id', 'desc')->first();
+        $lastProductId = $lastProduct ? $lastProduct->id : 0;
+        $productCode = 'KDP-' . str_pad($lastProductId + 1, 4, '0', STR_PAD_LEFT);
+    
+        return view('Manufacture.input-produk', compact('productCode'));
     }
 
     /**
@@ -45,24 +50,29 @@ class ProdukController extends Controller
     {
         $this->validate($request, [
             'nama' => 'required',
-            'kode' => 'required',
             'harga' => 'required',
-            'gambar' => 'file|image|mimes:jpeg,png,jpg:max:2048'
+            'gambar' => 'file|image|mimes:jpeg,png,jpg|max:2048'
         ]);
-
+    
+        // Generate the product code
+        $lastProduct = Produk::orderBy('id', 'desc')->first();
+        $lastProductId = $lastProduct ? $lastProduct->id : 0;
+        $productCode = 'KDP-' . str_pad($lastProductId + 1, 4, '0', STR_PAD_LEFT);
+    
         $gambar = $request->file('gambar');
-        $nama_gambar = time()."_".$gambar->getClientOriginalName();
+        $nama_gambar = time() . "_" . $gambar->getClientOriginalName();
         $simpan_gambar = 'img_produk';
         $gambar->move($simpan_gambar, $nama_gambar);
-
+    
         Produk::create([
             'nama' => $request->nama,
-            'kode' => $request->kode,
+            'kode' => $productCode, // Use the generated product code
             'harga' => $request->harga,
-            'gambar' =>  $nama_gambar
+            'gambar' => $nama_gambar
         ]);
+    
         return redirect('Manufacture/produk');
-    }
+    } 
 
     /**
      * Display the specified resource.
@@ -137,4 +147,11 @@ class ProdukController extends Controller
         $produk->delete();
         return back();  
     }
+    public function getChartData()
+    {
+        $produkData = Produk::select('nama', 'harga')->get();
+
+        return response()->json($produkData);
+    }
+
 }

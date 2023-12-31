@@ -27,6 +27,7 @@ Route::get('/', function () {
 });
 
 Route::get('Manufacture/produk', [ProdukController::class, 'index']);
+Route::get('/get-chart-data', [ProdukController::class, 'getChartData']);
 Route::get('Manufacture/input-produk', [ProdukController::class, 'create']);
 Route::post('/home/produk/simpan', [ProdukController::class, 'store'])->name('produk-simpan');
 Route::get('/home/produk/edit/{id}', [ProdukController::class, 'edit']);

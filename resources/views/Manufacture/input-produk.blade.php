@@ -26,25 +26,25 @@
                                 <div class="row mb-3">
                                     <label for="inputText" class="col-sm-2 col-form-label">Nama Produk</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="nama" id="nama" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputText" class="col-sm-2 col-form-label">Kode Produk</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="kode" id="kode" class="form-control">
+                                        <input type="text" name="nama" id="nama" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="inputText" class="col-sm-2 col-form-label">Harga Produk</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="harga" id="harga" class="form-control">
+                                        <input type="text" name="harga" id="harga" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="inputFile" class="col-sm-2 col-form-label">Gambar</label>
                                     <div class="col-sm-10">
-                                        <input type="file" name="gambar" id="gambar" class="form-control">
+                                        <input type="file" name="gambar" id="gambar" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Kode Produk</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="kode" id="kode" class="form-control" value="{{ $productCode }}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-12">

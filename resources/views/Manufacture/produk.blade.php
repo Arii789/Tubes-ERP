@@ -43,8 +43,7 @@
                                     @foreach ($produk as $pdk)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            {{-- <td>{!! DNS1D::getBarcodeHTML('Rp. ' . $pdk->harga, 'C39') !!}</td> --}}
-                                            <td></td>
+                                            <td>{!! SimpleSoftwareIO\QrCode\Facades\QrCode::size(100)->generate($pdk->kode); !!}</td>
                                             <td width="20%">{{ $pdk->nama }}</td>
                                             <td>{{ $pdk->kode }}</td>
                                             <td width="20%">{{ 'Rp. ' . $pdk->harga }}</td>

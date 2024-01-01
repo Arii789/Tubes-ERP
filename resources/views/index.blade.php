@@ -24,72 +24,56 @@
                             <div class="col-lg-11">
                                 <h6>ERP Perusahaan Alat Rumah Tangga</h6>
                                 <div class="dropdown">
-                                    <button class="btn btn-teal dropdown-toggle btn-info" id="dropdownFadeInUp" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fade In Up</button>
+                                    <button class="btn btn-teal dropdown-toggle btn-info" id="dropdownFadeInUp" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manufacture</button>
                                     <div class="dropdown-menu animated--fade-in-up" aria-labelledby="dropdownFadeInUp">
-                                        <a class="dropdown-item" href="#!">Action</a>
-                                        <a class="dropdown-item" href="#!">Another action</a>
-                                        <a class="dropdown-item" href="#!">Something else here</a>
+                                        <a class="dropdown-item" href="Manufacture/produk">Produk</a>
+                                        <a class="dropdown-item" href="Manufacture/bahan">Bahan</a>
+                                        <a class="dropdown-item" href="Manufacture/input-produk">Input Produk</a>
+                                        <a class="dropdown-item" href="Manufacture/input-bahan">Input Bahan</a>
                                     </div>
-                                    <button class="btn btn-teal dropdown-toggle btn-info" id="dropdownFadeInUp" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fade In Up</button>
+                                    <button class="btn btn-teal dropdown-toggle btn-info" id="dropdownFadeInUp" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">BOM</button>
                                     <div class="dropdown-menu animated--fade-in-up" aria-labelledby="dropdownFadeInUp">
-                                        <a class="dropdown-item" href="#!">Action</a>
-                                        <a class="dropdown-item" href="#!">Another action</a>
-                                        <a class="dropdown-item" href="#!">Something else here</a>
+                                        <a class="dropdown-item" href="bom/bom">Data BOM</a>
+                                        <a class="dropdown-item" href="bom/input-bom">Input BOM </a>
                                     </div>
-                                    <button class="btn btn-teal dropdown-toggle btn-info" id="dropdownFadeInUp" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fade In Up</button>
+                                    <button class="btn btn-teal dropdown-toggle btn-info" id="dropdownFadeInUp" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manufacture Order</button>
                                     <div class="dropdown-menu animated--fade-in-up" aria-labelledby="dropdownFadeInUp">
-                                        <a class="dropdown-item" href="#!">Action</a>
-                                        <a class="dropdown-item" href="#!">Another action</a>
-                                        <a class="dropdown-item" href="#!">Something else here</a>
+                                        <a class="dropdown-item" href="Manufacture/mo">Data Manufacture Order</a>
+                                        <a class="dropdown-item" href="Manufacture/mo-input">Input Manufacture Order</a>
                                     </div>
-                                    <button class="btn btn-teal dropdown-toggle btn-info" id="dropdownFadeInUp" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fade In Up</button>
+                                    <button class="btn btn-teal dropdown-toggle btn-info" id="dropdownFadeInUp" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Vendor</button>
                                     <div class="dropdown-menu animated--fade-in-up" aria-labelledby="dropdownFadeInUp">
-                                        <a class="dropdown-item" href="#!">Action</a>
-                                        <a class="dropdown-item" href="#!">Another action</a>
-                                        <a class="dropdown-item" href="#!">Something else here</a>
+                                        <a class="dropdown-item" href="vendor">Data Vendor</a>
+                                        <a class="dropdown-item" href="vendor/tambah">Input Vendor </a>
                                     </div>
-                                    <button class="btn btn-teal dropdown-toggle btn-info" id="dropdownFadeInUp" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fade In Up</button>
+                                    <button class="btn btn-teal dropdown-toggle btn-info" id="dropdownFadeInUp" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Request For Quotation</button>
                                     <div class="dropdown-menu animated--fade-in-up" aria-labelledby="dropdownFadeInUp">
-                                        <a class="dropdown-item" href="#!">Action</a>
-                                        <a class="dropdown-item" href="#!">Another action</a>
-                                        <a class="dropdown-item" href="#!">Something else here</a>
+                                        <a class="dropdown-item" href="rfq">Data RFQ</a>
+                                        <a class="dropdown-item" href="rfq-input">Input RFQ </a>
                                     </div>
-                                    <button class="btn btn-teal dropdown-toggle btn-info" id="dropdownFadeInUp" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fade In Up</button>
+                                    <button class="btn btn-teal dropdown-toggle btn-info" id="dropdownFadeInUp" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Purchase Order</button>
                                     <div class="dropdown-menu animated--fade-in-up" aria-labelledby="dropdownFadeInUp">
-                                        <a class="dropdown-item" href="#!">Action</a>
-                                        <a class="dropdown-item" href="#!">Another action</a>
-                                        <a class="dropdown-item" href="#!">Something else here</a>
+                                        <a class="dropdown-item" href="po">Data Purchase Order</a>
                                     </div>
-                                    <button class="btn btn-teal dropdown-toggle btn-info" id="dropdownFadeInUp" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fade In Up</button>
+                                    <button class="btn btn-teal dropdown-toggle btn-info" id="dropdownFadeInUp" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pembeli</button>
                                     <div class="dropdown-menu animated--fade-in-up" aria-labelledby="dropdownFadeInUp">
-                                        <a class="dropdown-item" href="#!">Action</a>
-                                        <a class="dropdown-item" href="#!">Another action</a>
-                                        <a class="dropdown-item" href="#!">Something else here</a>
+                                        <a class="dropdown-item" href="pembeli">Data Pembeli</a>
+                                        <a class="dropdown-item" href="pembeli/tambah">Tambah Pembeli</a>
                                     </div>
-                                    <button class="btn btn-teal dropdown-toggle btn-info" id="dropdownFadeInUp" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fade In Up</button>
+                                    <button class="btn btn-teal dropdown-toggle btn-info" id="dropdownFadeInUp" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sales Quotation</button>
                                     <div class="dropdown-menu animated--fade-in-up" aria-labelledby="dropdownFadeInUp">
-                                        <a class="dropdown-item" href="#!">Action</a>
-                                        <a class="dropdown-item" href="#!">Another action</a>
-                                        <a class="dropdown-item" href="#!">Something else here</a>
+                                        <a class="dropdown-item" href="sq">Data Sales Quotation</a>
+                                        <a class="dropdown-item" href="sq-input">Tambah Sales Quotation</a>
                                     </div>
-                                    <button class="btn btn-teal dropdown-toggle btn-info" id="dropdownFadeInUp" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fade In Up</button>
+                                    <button class="btn btn-teal dropdown-toggle btn-info" id="dropdownFadeInUp" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sales Order</button>
                                     <div class="dropdown-menu animated--fade-in-up" aria-labelledby="dropdownFadeInUp">
-                                        <a class="dropdown-item" href="#!">Action</a>
-                                        <a class="dropdown-item" href="#!">Another action</a>
-                                        <a class="dropdown-item" href="#!">Something else here</a>
+                                        <a class="dropdown-item" href="so">Data Sales Order</a>
                                     </div>
-                                    <button class="btn btn-teal dropdown-toggle btn-info" id="dropdownFadeInUp" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fade In Up</button>
+                                    <button class="btn btn-teal dropdown-toggle btn-info" id="dropdownFadeInUp" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Accounting</button>
                                     <div class="dropdown-menu animated--fade-in-up" aria-labelledby="dropdownFadeInUp">
-                                        <a class="dropdown-item" href="#!">Action</a>
-                                        <a class="dropdown-item" href="#!">Another action</a>
-                                        <a class="dropdown-item" href="#!">Something else here</a>
+                                        <a class="dropdown-item" href="/accounting">Data Accounting</a>
                                     </div>
-                                    <button class="btn btn-teal dropdown-toggle btn-info" id="dropdownFadeInUp" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fade In Up</button>
-                                    <div class="dropdown-menu animated--fade-in-up" aria-labelledby="dropdownFadeInUp">
-                                        <a class="dropdown-item" href="#!">Action</a>
-                                        <a class="dropdown-item" href="#!">Another action</a>
-                                        <a class="dropdown-item" href="#!">Something else here</a>
-                                    </div>
+                                    
                                 </div>
 
                             </div><!-- End Left side columns -->

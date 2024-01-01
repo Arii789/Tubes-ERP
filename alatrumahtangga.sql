@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2023 at 12:34 PM
+-- Generation Time: Dec 31, 2023 at 10:39 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -43,9 +43,7 @@ CREATE TABLE `bahan` (
 --
 
 INSERT INTO `bahan` (`id`, `nama`, `kode`, `harga`, `stok`, `gambar`, `created_at`, `updated_at`) VALUES
-(3, 'plastik', 'plt', 500, 8, '1698323593_lb.jpg', '2023-10-26 05:33:13', '2023-11-27 09:34:49'),
-(4, 'Tali', 'T', 250, 5, '1698324424_tali.jpg', '2023-10-26 05:47:04', '2023-11-27 09:42:15'),
-(5, 'Gagang Sapu dan Pel', 'GSP', 5000, 298, '1698652334_gagang sapu dan pel.jpeg', '2023-10-30 00:52:14', '2023-12-01 06:23:26');
+(6, 'Plastik', 'BDN-0001', 2000, NULL, '1704014016_Plastik.jpg', '2023-12-31 02:13:36', '2023-12-31 02:13:36');
 
 -- --------------------------------------------------------
 
@@ -60,15 +58,6 @@ CREATE TABLE `bom` (
   `total_harga` float NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `bom`
---
-
-INSERT INTO `bom` (`kode_bom`, `kode_produk`, `kuantitas`, `total_harga`) VALUES
-('1', '6', 2, 10000),
-('2', '4', 5, 6000),
-('4', '5', 2, 1000);
-
 -- --------------------------------------------------------
 
 --
@@ -82,16 +71,6 @@ CREATE TABLE `bom_list` (
   `kuantitas` float NOT NULL,
   `satuan` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `bom_list`
---
-
-INSERT INTO `bom_list` (`kode_bom_list`, `kode_bom`, `kode_bahan`, `kuantitas`, `satuan`) VALUES
-(2, '1', '5', 2, 'Butir'),
-(4, '4', '3', 2, 'Pcs'),
-(5, '2', '4', 4, 'Pcs'),
-(6, '2', '5', 1, 'Pcs');
 
 -- --------------------------------------------------------
 
@@ -147,17 +126,6 @@ CREATE TABLE `mo` (
   `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `mo`
---
-
-INSERT INTO `mo` (`kode_mo`, `kode_bom`, `kuantitas`, `tanggal`, `status`) VALUES
-('MO-0001', '4', 2, '2023/11/27', 3),
-('MO-0002', '4', 1, '2023/11/04', 5),
-('MO-0003', '4', 20, '2023/11/27', 3),
-('MO-0004', '2', 5, '2023/11/27', 3),
-('MO-0008', '1', 10, '2023/11/20', 3);
-
 -- --------------------------------------------------------
 
 --
@@ -184,16 +152,6 @@ CREATE TABLE `pembeli` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `pembeli`
---
-
-INSERT INTO `pembeli` (`id`, `nama`, `kontak`, `alamat`, `created_at`, `updated_at`) VALUES
-(1, 'Agus Setiawan', '0894372839422', 'Dsn Jetak RT 03 RW 02 Ds Karangjati Kec Pandaan, Pasuruan, Jawa Timur', NULL, NULL),
-(3, 'Muhammad Reza', '0895373849244', 'Jln. Raya Sigura Gura No.40 Malang', NULL, NULL),
-(5, 'Soolikin', '087654321234', 'Mojokerto, jawa timur, indonesia', NULL, NULL),
-(6, 'Cece Tompel', '0812345676543', 'Surabaya, jawa timur, indonesia', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -222,7 +180,7 @@ CREATE TABLE `personal_access_tokens` (
 CREATE TABLE `produk` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `nama` varchar(255) DEFAULT NULL,
-  `kode` varchar(30) NOT NULL,
+  `kode` varchar(255) NOT NULL,
   `harga` int(30) NOT NULL,
   `stok` int(11) DEFAULT NULL,
   `gambar` varchar(255) NOT NULL,
@@ -235,9 +193,7 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`id`, `nama`, `kode`, `harga`, `stok`, `gambar`, `created_at`, `updated_at`) VALUES
-(4, 'Sapu Lidi', 'SL', 2000, -12, '1698074102_ITN.jpg', NULL, NULL),
-(5, 'Tempat Sampah', 'TS', 7000, -29, '1698323065_TEMPAT-SAMPAH.jpg', NULL, NULL),
-(6, 'Pel Lantai', 'PL', 15000, 4, '1698652038_pel.jpeg', NULL, NULL);
+(8, 'Tempat Sampat Plastik', 'KDP-0001', 20000, NULL, '1704013944_tempat sampah.png', '2023-12-31 02:12:24', '2023-12-31 02:12:24');
 
 -- --------------------------------------------------------
 
@@ -254,13 +210,6 @@ CREATE TABLE `rfq` (
   `metode_pembayaran` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `rfq`
---
-
-INSERT INTO `rfq` (`kode_rfq`, `kode_vendor`, `tanggal_order`, `status`, `total_harga`, `metode_pembayaran`) VALUES
-('A011', 2, '2023-12-01', 5, 10000, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -273,13 +222,6 @@ CREATE TABLE `rfq_list` (
   `kode_bahan` varchar(20) NOT NULL,
   `kuantitas` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `rfq_list`
---
-
-INSERT INTO `rfq_list` (`kode_rfq_list`, `kode_rfq`, `kode_bahan`, `kuantitas`) VALUES
-(8, 'A011', '5', 2);
 
 -- --------------------------------------------------------
 
@@ -296,17 +238,6 @@ CREATE TABLE `sq` (
   `metode_pembayaran` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `sq`
---
-
-INSERT INTO `sq` (`kode_sq`, `kode_pembeli`, `tanggal_order`, `status`, `total_harga`, `metode_pembayaran`) VALUES
-('A001', 6, '2023-12-10', 2, 0, 0),
-('A012', 1, '2023-12-10', 5, 241000, 2),
-('A013', 6, '2023-12-10', 1, 217000, 0),
-('S-001', 1, '2023-01-07', 5, 30000, 1),
-('S-003', 4, '2023-01-10', 5, 80000, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -319,18 +250,6 @@ CREATE TABLE `sq_list` (
   `kode_produk` varchar(20) NOT NULL,
   `kuantitas` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `sq_list`
---
-
-INSERT INTO `sq_list` (`kode_sq_list`, `kode_sq`, `kode_produk`, `kuantitas`) VALUES
-(8, 'S-001', '3', 10),
-(20, 'S-003', '4', 10),
-(21, 'S-003', '3', 10),
-(25, 'A012', '5', 31),
-(26, 'A012', '4', 12),
-(28, 'A013', '5', 31);
 
 -- --------------------------------------------------------
 
@@ -375,14 +294,6 @@ CREATE TABLE `vendor` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `vendor`
---
-
-INSERT INTO `vendor` (`id`, `nama`, `kontak`, `alamat`, `created_at`, `updated_at`) VALUES
-(2, 'PT Lancar Jaya', '082321321321', 'Jl. anggrek', NULL, NULL),
-(3, 'PT Sejahtera Abadi', '082123123123', 'Jl. mawar', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -505,13 +416,13 @@ ALTER TABLE `vendor`
 -- AUTO_INCREMENT for table `bahan`
 --
 ALTER TABLE `bahan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `bom_list`
 --
 ALTER TABLE `bom_list`
-  MODIFY `kode_bom_list` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `kode_bom_list` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -529,7 +440,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pembeli`
 --
 ALTER TABLE `pembeli`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -541,7 +452,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `rfq_list`
@@ -553,7 +464,7 @@ ALTER TABLE `rfq_list`
 -- AUTO_INCREMENT for table `sq_list`
 --
 ALTER TABLE `sq_list`
-  MODIFY `kode_sq_list` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `kode_sq_list` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `temp_produce`

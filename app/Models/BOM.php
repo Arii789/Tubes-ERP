@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class BOM extends Model
 {
     use HasFactory;
+
     protected $table = "bom";
-    protected $primaryKey = 'kode_bom';
+    protected $primaryKey = 'kode_bom'; // Specify the custom primary key
     public $incrementing = false;
-    protected $fillable = ['kode_bom','kode_produk','kuantitas','total_harga'];
+    protected $fillable = ['kode_bom', 'kode_produk', 'kuantitas', 'total_harga'];
     public $timestamps = false;
 }

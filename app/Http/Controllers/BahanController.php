@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Bahan;
 use Illuminate\Http\Request;
-use File;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class BahanController extends Controller
 {
@@ -32,7 +33,12 @@ class BahanController extends Controller
      */
     public function create()
     {
-        return view ('Manufacture.input-bahan');
+        // Generate the bahan code
+        $lastBahan = Bahan::orderBy('id', 'desc')->first();
+        $lastBahanId = $lastBahan ? $lastBahan->id : 0;
+        $bahanCode = 'KDB-' . str_pad($lastBahanId + 1, 4, '0', STR_PAD_LEFT);
+
+        return view('Manufacture.input-bahan', compact('bahanCode'));
     }
 
     /**
@@ -45,24 +51,31 @@ class BahanController extends Controller
     {
         $this->validate($request, [
             'nama' => 'required',
-            'kode' => 'required',
             'harga' => 'required',
-            'gambar' => 'file|image|mimes:jpeg,png,jpg:max:2048'
+            'gambar' => 'file|image|mimes:jpeg,png,jpg|max:2048'
         ]);
-
+    
+        // Generate the Bahan code
+        $lastBahan = Bahan::orderBy('id', 'desc')->first();
+        $lastBahanId = $lastBahan ? $lastBahan->id : 0;
+        $bahanCode = 'BDN-' . str_pad($lastBahanId + 1, 4, '0', STR_PAD_LEFT);
+    
         $gambar = $request->file('gambar');
-        $nama_gambar = time()."_".$gambar->getClientOriginalName();
+        $nama_gambar = time() . "_" . $gambar->getClientOriginalName();
         $simpan_gambar = 'img_bahan';
         $gambar->move($simpan_gambar, $nama_gambar);
-
+    
         Bahan::create([
             'nama' => $request->nama,
-            'kode' => $request->kode,
+            'kode' => $bahanCode, // Use the generated Bahan code
             'harga' => $request->harga,
-            'gambar' =>  $nama_gambar
+            'gambar' => $nama_gambar
         ]);
+    
         return redirect('Manufacture/bahan');
     }
+    
+    
 
     /**
      * Display the specified resource.
@@ -100,26 +113,27 @@ class BahanController extends Controller
             'nama' => 'required',
             'kode' => 'required',
             'harga' => 'required',
-            'gambar' => 'file|image|mimes:jpeg,png,jpg:max:2048'
+            'gambar' => 'file|image|mimes:jpeg,png,jpg|max:2048'
         ]);
-
+    
         $bahan = Bahan::find($id);
         $bahan->nama = $request->nama;
         $bahan->kode = $request->kode;
         $bahan->harga = $request->harga;
-
-        if($request->hasfile('gambar')) {
-            File::delete('img_bahan/'.$produk->gambar);
+    
+        if ($request->hasfile('gambar')) {
+            // Fix the variable name here from $produk to $bahan
+            File::delete('img_bahan/' . $bahan->gambar);
             $gambar = $request->file('gambar');
-            $nama_gambar = time()."_".$gambar->getClientOriginalName();
+            $nama_gambar = time() . "_" . $gambar->getClientOriginalName();
             $simpan_gambar = 'img_bahan';
-            $gambar->move($simpan_gambar, $nama_gambar); 
+            $gambar->move($simpan_gambar, $nama_gambar);
             $bahan->gambar = $nama_gambar;
         }
-
+    
         $bahan->save();
         return redirect('Manufacture/bahan');
-    }
+    }    
 
     /**
      * Remove the specified resource from storage.

@@ -42,8 +42,7 @@
                                         @foreach ($bahan as $bhn)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                {{-- <td>{!! DNS1D::getBarcodeHTML('Rp. '. $bhn->harga, 'C39') !!}</td> --}}
-                                                <td></td>
+                                                <td>{!! SimpleSoftwareIO\QrCode\Facades\QrCode::size(100)->generate($bhn->kode); !!}</td>
                                                 <td>{{ $bhn->nama }}</td>
                                                 <td>{{ $bhn->kode }}</td>
                                                 <td width="10%">{{ 'Rp. ' . $bhn->harga }}</td>

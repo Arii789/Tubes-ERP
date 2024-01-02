@@ -141,16 +141,16 @@
                 <td width="10%">
                     Barcode
                 </td>
-                <td width="11%">
-                    Nama Bahan
+                <td width="30%">
+                    Nama Produk
                 </td>
-                <td width="10%">
-                    Kode Bahan
+                <td width="30%">
+                    Kode Produk
                 </td>
-                <td width="10%">
+                <td width="30%">
                     Harga
                 </td>
-                <td width="10%">
+                <td width="30%">
                     Stok
                 </td>
             </tr>

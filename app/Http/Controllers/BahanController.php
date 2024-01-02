@@ -76,7 +76,7 @@ class BahanController extends Controller
 
     public function edit($kode)
     {
-        $bahan = Bahan::findorfail($kode);
+        $bahan = bahan::where('kode', $kode)->firstOrFail();
         return view('Manufacture.edit-bahan', compact('bahan'));
     }
 

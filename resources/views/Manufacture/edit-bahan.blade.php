@@ -21,7 +21,7 @@
                             <h5 class="card-title">Edit Data Bahan</h5>
 
                             <!-- General Form Elements -->
-                            <form action="{{ url('/home/bahan/update/' . $bahan->id) }}" method="post"
+                            <form action="{{ url('/Manufacture/bahan/update/' . $bahan->id) }}" method="post"
                                 enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 {{ method_field('PUT') }}
@@ -58,9 +58,10 @@
                                 <div class="row mb-3">
                                     <label for="inputPassword" class="col-sm-2 col-form-label">Gambar Lama</label>
                                     <img src="{{ asset('/img_bahan/' . $bahan->gambar) }}" style="width: 20%" alt="">
+
                                     <div class="col-sm-10">
                                         <input type="file" name="gambar" id="gambar" class="form-control"
-                                            value="{{ asset('/img_bahan/' . $bahan->gambar) }}" style="max-width: 5rem;">
+                                            value="{{ asset('/img_bahan/' . $bahan->gambar) }}" style="max-width: 7rem;">
                                     </div>
                                 </div>
                                 <div class="col-12">

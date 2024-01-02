@@ -25,22 +25,22 @@ use App\Http\Controllers\AccountingController;
 Route::get('/', function () {
     return view('index');
 });
+Route::get('/get-chart-data', [ProdukController::class, 'getChartData']);
 
 Route::get('Manufacture/produk', [ProdukController::class, 'index']);
-Route::get('/get-chart-data', [ProdukController::class, 'getChartData']);
 Route::get('Manufacture/input-produk', [ProdukController::class, 'create']);
-Route::post('/home/produk/simpan', [ProdukController::class, 'store'])->name('produk-simpan');
-Route::get('/home/produk/edit/{id}', [ProdukController::class, 'edit']);
-Route::put('/home/produk/update/{id}', [ProdukController::class, 'update'])->name('produk-update');
-Route::get('/home/produk/delete/{id}', [ProdukController::class, 'destroy'])->name('produk-delete');
+Route::post('/Manufacture/produk/simpan', [ProdukController::class, 'store'])->name('produk-simpan');
+Route::get('/Manufacture/produk/edit/{kode}', [ProdukController::class, 'edit']);
+Route::put('/Manufacture/produk/update/{id}', [ProdukController::class, 'update'])->name('produk-update');
+Route::get('/Manufacture/produk/delete/{id}', [ProdukController::class, 'destroy'])->name('produk-delete');
 Route::get('Manufacture/cetak-produk', [ProdukController::class, 'cetakProduk'])->name('cetak-produk');
 
 Route::get('Manufacture/bahan', [BahanController::class, 'index']);
 Route::get('Manufacture/input-bahan', [BahanController::class, 'create']);
-Route::post('/home/bahan/simpan', [BahanController::class, 'store'])->name('bahan-simpan');
-Route::get('/home/bahan/edit/{id}', [BahanController::class, 'edit']);
-Route::put('/home/bahan/update/{id}', [BahanController::class, 'update'])->name('bahan-update');
-Route::get('/home/bahan/delete/{id}', [BahanController::class, 'destroy'])->name('bahan-delete');
+Route::post('/Manufacture/bahan/simpan', [BahanController::class, 'store'])->name('bahan-simpan');
+Route::get('/Manufacture/bahan/edit/{kode}', [BahanController::class, 'edit']);
+Route::put('/Manufacture/bahan/update/{id}', [BahanController::class, 'update'])->name('bahan-update');
+Route::get('/Manufacture/bahan/delete/{id}', [BahanController::class, 'destroy'])->name('bahan-delete');
 Route::get('Manufacture/cetak-bahan', [BahanController::class, 'cetakBahan'])->name('cetak-bahan');
 
 Route::get('bom/bom', [BOMController::class,'material']);

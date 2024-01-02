@@ -116,7 +116,7 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="{{ asset('assets/img/among us.png') }}" alt="" width="150px">
+                                <img src="{{ asset('assets/img/logo pdf erp.png') }}" alt="" width="150px">
                             </td>
                         </tr>
                     </table>
@@ -128,9 +128,9 @@
                     <table>
                         <tr>
                             <td>
-                                PT. ART<br>
-                                Kec.Butnik, Jawa Timur<br>
-                                Situbondo, 99999
+                                Perusahaan Alat Rumah Tangga<br>
+                                Kec.Singosari, Jawa Timur<br>
+                                Malang, 617543
                             </td>
                         </tr>
                     </table>
@@ -158,8 +158,7 @@
             @if($dtBahan->count())
             @foreach($dtBahan as $item)
             <tr class="item">
-                {{-- <td>{!! DNS1D::getBarcodeHTML('Rp. '. $item->harga, 'C39') !!}</td> --}}
-                <td></td>
+                <td>{!! DNS1D::getBarcodeSVG("$item->bahan_qr", 'PHARMA', 2, 25) !!} </td>
                 <td>{{$item->nama}}</td>
                 <td>{{$item->kode}}</td>
                 <td>Rp. {{$item->harga}}</td>

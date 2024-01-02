@@ -26,7 +26,6 @@ class ProdukController extends Controller
         $lastProduct = Produk::orderBy('id', 'desc')->first();
         $lastProductId = $lastProduct ? $lastProduct->id : 0;
         $productCode = 'KDP-' . str_pad($lastProductId + 1, 4, '0', STR_PAD_LEFT);
-
         return view('Manufacture.input-produk', compact('productCode'));
     }
 
@@ -76,9 +75,9 @@ class ProdukController extends Controller
         return Produk::where('produk_qr', $number)->exists();
     }
 
-    public function edit($id)
+    public function edit($kode)
     {
-        $produk = Produk::findorfail($id);
+        $produk = Produk::where('kode', $kode)->firstOrFail();
         return view('Manufacture.edit-produk', compact('produk'));
     }
 
@@ -86,12 +85,10 @@ class ProdukController extends Controller
     {
         $this->validate($request, [
             'nama' => 'required',
-            'kode' => 'required',
             'harga' => 'required',
-            'gambar' => 'file|image|mimes:jpeg,png,jpg:max:2048'
+            'gambar' => 'file|image|mimes:jpeg,png,jpg|max:2048',
         ], [
             'nama.required' => 'Nama produk harus diisi.',
-            'nama.unique' => 'Nama produk sudah ada dalam database.',
             'harga.required' => 'Harga produk harus diisi.',
             'gambar.file' => 'File harus berupa gambar.',
             'gambar.image' => 'File harus berupa gambar.',

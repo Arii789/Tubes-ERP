@@ -43,7 +43,7 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{!! DNS1D::getBarcodeHTML("$pdk->produk_qr", 'PHARMA', 2, 25) !!} P - {{ $pdk->produk_qr }}</td>
-                                                <td width="20%">{{ $pdk->nama }}</td>
+                                                <td>{{ $pdk->nama }}</td>
                                                 <td>{{ $pdk->kode }}</td>
                                                 <td width="20%">{{ 'Rp. ' . $pdk->harga }}</td>
                                                 <td>{{ $pdk->stok }}</td>
@@ -52,8 +52,8 @@
                                                         alt="" style="max-width: 7rem;">
                                                 </td>
                                                 <td>
-                                                    <a href="/home/produk/edit/{{ $pdk->id }}">Edit | </a>
-                                                    <a href="/home/produk/delete/{{ $pdk->id }}">Hapus</a>
+                                                    <a href="/Manufacture/produk/edit/{{ $pdk->kode }}">Edit | </a>
+                                                    <a href="/Manufacture/produk/delete/{{ $pdk->id }}">Hapus</a>
                                                 </td>
                                             </tr>
                                         @endforeach

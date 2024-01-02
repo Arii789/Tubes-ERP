@@ -5,8 +5,7 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                <li class="breadcrumb-item">Manufacturing</li>
-                <li class="breadcrumb-item active">Data Bahan</li>
+                <li class="breadcrumb-item"><a href="{{ url('/Manufacture/bahan') }}">Manufacturing Produk</a></li>
             </ol>
         </nav>
         </div><!-- End Page Title -->
@@ -42,18 +41,18 @@
                                         @foreach ($bahan as $bhn)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{!! SimpleSoftwareIO\QrCode\Facades\QrCode::size(100)->generate($bhn->kode); !!}</td>
+                                                <td>{!! DNS1D::getBarcodeHTML("$bhn->bahan_qr", 'PHARMA', 2, 25) !!} P - {{ $bhn->bahan_qr }}</td>
                                                 <td>{{ $bhn->nama }}</td>
                                                 <td>{{ $bhn->kode }}</td>
-                                                <td width="10%">{{ 'Rp. ' . $bhn->harga }}</td>
+                                                <td width="20%">{{ 'Rp. ' . $bhn->harga }}</td>
                                                 <td>{{ $bhn->stok }}</td>
-                                                <td width="25%">
-                                                    <img src="{{ url('/img_bahan/' . $bhn->gambar) }}" width="40%"
+                                                <td width="20%">
+                                                    <img src="{{ url('/img_bahan/' . $bhn->gambar) }}" width="100%"
                                                         alt="" style="max-width: 7rem;">
                                                 </td>
                                                 <td>
-                                                    <a href="/home/bahan/edit/{{ $bhn->id }}">Edit  | </a>
-                                                    <a href="/home/bahan/delete/{{ $bhn->id }}">Hapus</a>
+                                                    <a href="/Manufacture/bahan/edit/{{ $bhn->kode }}">Edit  | </a>
+                                                    <a href="/Manufacture/bahan/delete/{{ $bhn->id }}">Hapus</a>
                                                 </td>
                                             </tr>
                                         @endforeach

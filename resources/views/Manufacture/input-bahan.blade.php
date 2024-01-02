@@ -5,9 +5,7 @@
             <h1>Tambah Bahan</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                    <li class="breadcrumb-item">Manufacturing</li>
-                    <li class="breadcrumb-item active">Tambah Bahan</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/Manufacture/bahan') }}">Manufacturing Bahan</a></li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -23,6 +21,15 @@
                             <!-- General Form Elements -->
                             <form action="{{ route('bahan-simpan') }}" method="post" enctype="multipart/form-data">
                                 {{ csrf_field() }}
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                                 <div class="row mb-3">
                                     <label for="inputText" class="col-sm-2 col-form-label">Nama Bahan</label>
                                     <div class="col-sm-10">
@@ -32,7 +39,8 @@
                                 <div class="row mb-3">
                                     <label for="inputText" class="col-sm-2 col-form-label">Kode Bahan</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="kode" id="kode" class="form-control" value="{{ $bahanCode }}" readonly>
+                                        <input type="text" name="kode" id="kode" class="form-control"
+                                            value="{{ $bahanCode }}" readonly>
                                     </div>
                                 </div>
                                 <div class="row mb-3">

@@ -11,6 +11,6 @@ class bahan extends Model
     protected $table = 'bahan';
     protected $primaryKey = 'id';
     public $incrementing = true;
-    protected $fillable = ['nama', 'kode', 'harga', 'stok', 'gambar'];
+    protected $fillable = ['nama', 'kode', 'harga', 'stok', 'gambar', 'bahan_qr'];
 }
 

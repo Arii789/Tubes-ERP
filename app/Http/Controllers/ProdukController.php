@@ -9,101 +9,79 @@ use Illuminate\Support\Facades\File;
 
 class ProdukController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $produk = Produk::latest()->get();
-        return view ('Manufacture.produk', compact('produk'));
+        return view('Manufacture.produk', compact('produk'));
     }
 
     public function cetakProduk()
     {
         $dtProduk = Produk::get();
-        return view ('Manufacture.cetak-produk', compact('dtProduk'));
+        return view('Manufacture.cetak-produk', compact('dtProduk'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $lastProduct = Produk::orderBy('id', 'desc')->first();
         $lastProductId = $lastProduct ? $lastProduct->id : 0;
         $productCode = 'KDP-' . str_pad($lastProductId + 1, 4, '0', STR_PAD_LEFT);
-    
+
         return view('Manufacture.input-produk', compact('productCode'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nama' => 'required',
+            'nama' => 'required|unique:produk',
             'harga' => 'required',
-            'gambar' => 'file|image|mimes:jpeg,png,jpg|max:2048'
+            'gambar' => 'file|image|mimes:jpeg,png,jpg|max:2048',
+        ], [
+            'nama.required' => 'Nama produk harus diisi.',
+            'nama.unique' => 'Nama produk sudah ada dalam database.',
+            'harga.required' => 'Harga produk harus diisi.',
+            'gambar.file' => 'File harus berupa gambar.',
+            'gambar.image' => 'File harus berupa gambar.',
+            'gambar.mimes' => 'Format gambar harus jpeg, png, atau jpg.',
+            'gambar.max' => 'Ukuran gambar tidak boleh lebih dari 2048 KB.',
         ]);
-    
-        // Generate the product code
+
         $lastProduct = Produk::orderBy('id', 'desc')->first();
         $lastProductId = $lastProduct ? $lastProduct->id : 0;
         $productCode = 'KDP-' . str_pad($lastProductId + 1, 4, '0', STR_PAD_LEFT);
-    
+
         $gambar = $request->file('gambar');
         $nama_gambar = time() . "_" . $gambar->getClientOriginalName();
         $simpan_gambar = 'img_produk';
         $gambar->move($simpan_gambar, $nama_gambar);
-    
+
+        $number = mt_rand(10000000, 99999999);
+        if ($this->productCodeExists($number)) {
+            $number = mt_rand(10000000, 99999999);
+        }
+
         Produk::create([
             'nama' => $request->nama,
-            'kode' => $productCode, // Use the generated product code
+            'kode' => $productCode,
             'harga' => $request->harga,
-            'gambar' => $nama_gambar
+            'gambar' => $nama_gambar,
+            'produk_qr' => $number,
         ]);
-    
-        return redirect('Manufacture/produk');
-    } 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect('Manufacture/produk')->with('success', 'Produk berhasil disimpan.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function productCodeExists($number)
+    {
+        return Produk::where('produk_qr', $number)->exists();
+    }
+
     public function edit($id)
     {
         $produk = Produk::findorfail($id);
-        return view ('Manufacture.edit-produk', compact('produk'));
+        return view('Manufacture.edit-produk', compact('produk'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
@@ -111,6 +89,14 @@ class ProdukController extends Controller
             'kode' => 'required',
             'harga' => 'required',
             'gambar' => 'file|image|mimes:jpeg,png,jpg:max:2048'
+        ], [
+            'nama.required' => 'Nama produk harus diisi.',
+            'nama.unique' => 'Nama produk sudah ada dalam database.',
+            'harga.required' => 'Harga produk harus diisi.',
+            'gambar.file' => 'File harus berupa gambar.',
+            'gambar.image' => 'File harus berupa gambar.',
+            'gambar.mimes' => 'Format gambar harus jpeg, png, atau jpg.',
+            'gambar.max' => 'Ukuran gambar tidak boleh lebih dari 2048 KB.',
         ]);
 
         $produk = Produk::find($id);
@@ -118,12 +104,12 @@ class ProdukController extends Controller
         $produk->kode = $request->kode;
         $produk->harga = $request->harga;
 
-        if($request->hasfile('gambar')) {
-            File::delete('img_produk/'.$produk->gambar);
+        if ($request->hasfile('gambar')) {
+            File::delete('img_produk/' . $produk->gambar);
             $gambar = $request->file('gambar');
-            $nama_gambar = time()."_".$gambar->getClientOriginalName();
+            $nama_gambar = time() . "_" . $gambar->getClientOriginalName();
             $simpan_gambar = 'img_produk';
-            $gambar->move($simpan_gambar, $nama_gambar); 
+            $gambar->move($simpan_gambar, $nama_gambar);
             $produk->gambar = $nama_gambar;
         }
 
@@ -131,21 +117,12 @@ class ProdukController extends Controller
         return redirect('Manufacture/produk');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        // hapus file
         $produk = Produk::find($id);
-        File::delete('img_produk/'.$produk->gambar);
-      
-        // hapus data
+        File::delete('img_produk/' . $produk->gambar);
         $produk->delete();
-        return back();  
+        return back();
     }
     public function getChartData()
     {
@@ -153,5 +130,4 @@ class ProdukController extends Controller
 
         return response()->json($produkData);
     }
-
 }

@@ -6,7 +6,7 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                    <li class="breadcrumb-item">Manufacturing</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/Manufacture/produk') }}">Manufacturing</a></li>
                     <li class="breadcrumb-item active">Edit Produk</li>
                 </ol>
             </nav>
@@ -25,6 +25,15 @@
                                 enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 {{ method_field('PUT') }}
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                                 <div class="row mb-3">
                                     <label for="inputText" class="col-sm-2 col-form-label">Nama Produk</label>
                                     <div class="col-sm-10">
@@ -36,7 +45,7 @@
                                     <label for="inputText" class="col-sm-2 col-form-label">Kode Produk</label>
                                     <div class="col-sm-10">
                                         <input type="text" name="kode" id="kode" class="form-control"
-                                            value="{{ $produk->kode }}">
+                                            value="{{ $produk->kode }}" readonly>
                                     </div>
                                 </div>
                                 <div class="row mb-3">

@@ -27,20 +27,18 @@
                                 <div class="row mb-3">
                                     <label for="inputText" class="col-sm-2 col-form-label">Kode MO</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="kode_mo" id="kode_mo" class="form-control">
+                                        <input type="text" name="kode_mo" id="kode_mo" class="form-control" value="{{ $moCode }}" readonly>
                                     </div>
                                 </div>
-
+            
                                 <div class="row mb-3">
                                     <label class="col-sm-2 col-form-label">Produk</label>
                                     <div class="col-sm-10">
-                                        <select class="form-select" aria-label="Default select example" name="kode_bom"
-                                            id="kode_bom">
-                                            <option selected>Pilih Produk</option>
+                                        <select class="form-select" aria-label="Default select example" name="kode_bom" id="kode_bom">
+                                            <option selected disabled>Pilih Produk</option>
                                             @if ($boms->count())
                                                 @foreach ($boms as $item)
-                                                    <option value="{{ $item->kode_bom }}">{{ $item->kode_bom }} -
-                                                        {{ $item->nama }} x {{ $item->kuantitas }} Pcs</option>
+                                                    <option value="{{ $item->kode_bom }}">{{ $item->kode_bom }} - {{ $item->nama }} x {{ $item->kuantitas }} Pcs</option>
                                                 @endforeach
                                             @endif
                                         </select>

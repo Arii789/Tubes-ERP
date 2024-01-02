@@ -30,19 +30,10 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-
-    <!-- =======================================================
-  * Template Name: NiceAdmin
-  * Updated: Sep 18 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 
 <body>
-
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -95,16 +86,6 @@
                     <li>
                         <a href="{{ url('Manufacture/bahan') }}">
                             <i class="bi bi-circle"></i><span>Bahan</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ url('Manufacture/input-produk') }}">
-                            <i class="bi bi-circle"></i><span>Input Produk</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ url('Manufacture/input-bahan') }}">
-                            <i class="bi bi-circle"></i><span>Input Bahan</span>
                         </a>
                     </li>
                 </ul>
@@ -269,10 +250,6 @@
             © Copyright <strong><span>Kelompok 9</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
             Designed by <a href="https://www.tiktok.com/@gamehack3rz">gamehack3rz</a>
         </div>
     </footer>
@@ -294,5 +271,4 @@
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
 </body>
-
 </html>

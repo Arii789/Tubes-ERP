@@ -13,4 +13,7 @@ class MO extends Model
     public $incrementing = false;
     protected $fillable = ['kode_mo','kode_bom','kuantitas', 'tanggal', 'status'];
     public $timestamps = false;
+    protected $casts = [
+        'status' => 'integer',
+    ];
 }

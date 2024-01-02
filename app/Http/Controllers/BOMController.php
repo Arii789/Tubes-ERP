@@ -20,12 +20,9 @@ class BOMController extends Controller
     public function materialInput()
     {
         $produk = Produk::get();
-    
-        // Generate the BOM code
         $lastBOM = BOM::orderBy('kode_bom', 'desc')->first();
         $lastBOMId = $lastBOM ? intval(substr($lastBOM->kode_bom, 4)) : 0;
-        $bomCode = 'KDB-' . str_pad($lastBOMId + 1, 4, '0', STR_PAD_LEFT);
-    
+        $bomCode = 'KDBM-' . str_pad($lastBOMId + 1, 4, '0', STR_PAD_LEFT);
         return view('bom.input-bom', compact('produk', 'bomCode'));
     }
 

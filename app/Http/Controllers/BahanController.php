@@ -9,11 +9,7 @@ use Illuminate\Support\Str;
 
 class BahanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $bahan = Bahan::latest()->get();
@@ -26,27 +22,14 @@ class BahanController extends Controller
         return view ('Manufacture.cetak-bahan', compact('dtBahan'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        // Generate the bahan code
         $lastBahan = Bahan::orderBy('id', 'desc')->first();
         $lastBahanId = $lastBahan ? $lastBahan->id : 0;
         $bahanCode = 'KDB-' . str_pad($lastBahanId + 1, 4, '0', STR_PAD_LEFT);
-
         return view('Manufacture.input-bahan', compact('bahanCode'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -55,11 +38,9 @@ class BahanController extends Controller
             'gambar' => 'file|image|mimes:jpeg,png,jpg|max:2048'
         ]);
     
-        // Generate the Bahan code
         $lastBahan = Bahan::orderBy('id', 'desc')->first();
         $lastBahanId = $lastBahan ? $lastBahan->id : 0;
         $bahanCode = 'BDN-' . str_pad($lastBahanId + 1, 4, '0', STR_PAD_LEFT);
-    
         $gambar = $request->file('gambar');
         $nama_gambar = time() . "_" . $gambar->getClientOriginalName();
         $simpan_gambar = 'img_bahan';
@@ -67,7 +48,7 @@ class BahanController extends Controller
     
         Bahan::create([
             'nama' => $request->nama,
-            'kode' => $bahanCode, // Use the generated Bahan code
+            'kode' => $bahanCode,
             'harga' => $request->harga,
             'gambar' => $nama_gambar
         ]);
@@ -75,38 +56,12 @@ class BahanController extends Controller
         return redirect('Manufacture/bahan');
     }
     
-    
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $bahan = Bahan::findorfail($id);
         return view ('Manufacture.edit-bahan', compact('bahan'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
@@ -122,7 +77,6 @@ class BahanController extends Controller
         $bahan->harga = $request->harga;
     
         if ($request->hasfile('gambar')) {
-            // Fix the variable name here from $produk to $bahan
             File::delete('img_bahan/' . $bahan->gambar);
             $gambar = $request->file('gambar');
             $nama_gambar = time() . "_" . $gambar->getClientOriginalName();
@@ -130,17 +84,11 @@ class BahanController extends Controller
             $gambar->move($simpan_gambar, $nama_gambar);
             $bahan->gambar = $nama_gambar;
         }
-    
+
         $bahan->save();
         return redirect('Manufacture/bahan');
     }    
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         // hapus file

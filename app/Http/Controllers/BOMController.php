@@ -21,8 +21,10 @@ class BOMController extends Controller
     {
         $produk = Produk::get();
         $lastBOM = BOM::orderBy('kode_bom', 'desc')->first();
-        $lastBOMId = $lastBOM ? intval(substr($lastBOM->kode_bom, 4)) : 0;
-        $bomCode = 'KDBM-' . str_pad($lastBOMId + 1, 4, '0', STR_PAD_LEFT);
+        $lastBOMId = $lastBOM ? intval(substr($lastBOM->kode_bom, 5)) : 0;
+        $newBOMId = $lastBOMId + 1;
+        $bomCode = 'KDBM-' . str_pad($newBOMId, 4, '0', STR_PAD_LEFT);
+
         return view('bom.input-bom', compact('produk', 'bomCode'));
     }
 
@@ -40,12 +42,14 @@ class BOMController extends Controller
 
     public function upload(Request $request)
     {
-        BOM::create([
-            'kode_bom' => $request->kode_bom,
+        $bom = BOM::create([
             'kode_produk' => $request->kode_produk,
             'kuantitas' => $request->kuantitas,
         ]);
-        return redirect('bom/input-item-bom/' . $request->kode_bom);
+
+        // The kode_bom is automatically generated in the model's boot method
+
+        return redirect('bom/input-item-bom/' . $bom->kode_bom);
     }
 
     public function uploadList(Request $request)
@@ -83,19 +87,15 @@ class BOMController extends Controller
        return redirect('bom/input-item-bom/' . $bom_list->kode_bom);
     }
 
-    public function deleteBom($kode_bom){
-        $bom_list = BOMList::where('kode_bom', $kode_bom);
-        $bom_list->delete();
 
-        $bom = BOM::find($kode_bom);
-        $bom->delete();
-       return redirect('bom/bom/');
-    }
-
-    public function cetakBom()
+    public function deleteBom($kode_bom)
     {
-        $bom = BOM::join('produk', 'bom.kode_produk', '=', 'produk.id')
-            ->get(['bom.*', 'produk.nama']);
-        return view ('bom.cetak-bom', compact('bom'));
+        // Delete associated BOMList records
+        BOMList::where('kode_bom', $kode_bom)->delete();
+
+        // Delete the BOM record
+        BOM::where('kode_bom', $kode_bom)->delete();
+
+        return redirect('bom/bom/');
     }
 }

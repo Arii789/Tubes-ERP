@@ -24,17 +24,21 @@
                             <form action="{{ url('rfq-input') }}" method="post" enctype="multipart/form-data">
                                 {{ csrf_field() }}
 
+                                <!-- Di view rfq-input.blade.php -->
                                 <div class="row mb-3">
                                     <label for="inputText" class="col-sm-2 col-form-label">Kode RFQ</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="kode_rfq" id="kode_rfq" class="form-control">
+                                        <input type="text" name="kode_rfq" id="kode_rfq" class="form-control"
+                                            value="{{ $RfqCode }}" readonly>
                                     </div>
                                 </div>
+
 
                                 <div class="row mb-3">
                                     <label class="col-sm-2 col-form-label">Vendor</label>
                                     <div class="col-sm-10">
-                                        <select class="form-select" aria-label="Default select example" name="kode_vendor" id="kode_vendor">
+                                        <select class="form-select" aria-label="Default select example" name="kode_vendor"
+                                            id="kode_vendor">
                                             <option selected>Pilih Vendor</option>
                                             @if ($vendors->count())
                                                 @foreach ($vendors as $item)

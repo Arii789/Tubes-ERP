@@ -128,9 +128,9 @@
                     <table>
                         <tr>
                             <td>
-                                PT. ART<br>
-                                Kec.Butnik, Jawa Timur<br>
-                                Situbondo, 99999
+                                Perusahaan Alat Rumah Tangga<br>
+                                Kec.Singosari, Jawa Timur<br>
+                                Malang, 617543
                             </td>
                         </tr>
                     </table>
@@ -138,16 +138,16 @@
             </tr>
 
             <tr class="heading">
-                <td>
+                <td width="10%">
                     Kode MO
                 </td>
-                <td>
+                <td width="30%">
                     Nama Produk
                 </td>
-                <td>
+                <td width="30%">
                     Kuantitas
                 </td>
-                <td>
+                <td width="30%">
                     Tanggal Order
                 </td>
             </tr>

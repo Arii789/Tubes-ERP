@@ -21,7 +21,8 @@
                             <!-- Table with stripped rows -->
                             <table class="table datatable">
                                 <div class="card-body">
-                                    <a href="rfq-input"><button type="button" class="btn btn-primary">Tambah RFQ</button></a>
+                                    <a href="rfq-input"><button type="button" class="btn btn-primary">Tambah
+                                            RFQ</button></a>
                                 </div>
                                 <thead>
                                     <tr>
@@ -51,8 +52,8 @@
                                                 </td>
                                                 <td>Rp. {{ $item->total_harga }}</td>
                                                 <td>
-                                                    <a href="{{ url('rfq-input-item/' . $item->kode_rfq) }}"><span
-                                                            class="badge bg-success"> Edit</span></a>
+                                                    <a href="{{ url('rfq-input-item/' . $item->kode_rfq) }}">
+                                                        <span class="badge bg-success"> Edit</span></a>
                                                     <a href="{{ url('rfq-delete/' . $item->kode_rfq) }}"><span
                                                             class="badge bg-danger"> Hapus</span></a>
                                                 </td>

@@ -9,9 +9,6 @@ use App\Models\Bahan;
 use App\Models\MO;
 use App\Models\TempProduce;
 use Illuminate\Http\Request;
-use File;
-use Image;
-use PDF;
 use Illuminate\Support\Str;
 
 class MoController extends Controller
@@ -30,26 +27,31 @@ class MoController extends Controller
     {
         $boms = BOM::join('produk', 'bom.kode_produk', '=', 'produk.id')
             ->get(['bom.*', 'produk.nama']);
-        $moCode = $this->generateMoCode();
+    
+        // Retrieve the latest kode_mo directly from the MO model
+        $latestMo = MO::orderBy('kode_mo', 'desc')->first();
+        
+        // Extract the numeric part of the latest kode_mo and increment it
+        $newMoId = $latestMo ? (int)substr($latestMo->kode_mo, 5) + 1 : 1;
+    
+        // Build the new kode_mo
+        $moCode = 'KDMO-' . str_pad($newMoId, 4, '0', STR_PAD_LEFT);
+    
         return view('mo.mo-input', ['boms' => $boms, 'moCode' => $moCode]);
     }
-    protected function generateMoCode()
-    {
-        $lastMO = MO::orderBy('kode_mo', 'desc')->first();
-        $lastMOCode = $lastMO ? $lastMO->kode_mo : 0;
-        return 'KDMO-' . str_pad($lastMOCode + 1, 4, '0', STR_PAD_LEFT);
-    }
-    
+
     public function moUpload(Request $request)
     {
         $tanggal = date("Y/m/d");
-        MO::create([
-            'kode_mo' => $request->kode_mo,
+
+        // No need to set 'kode_mo' here; it will be handled in the model's creating event
+        $mo = MO::create([
             'kode_bom' => $request->kode_bom,
             'kuantitas' => $request->kuantitas,
-            'tanggal'=> $tanggal,
+            'tanggal' => $tanggal,
             'status' => 1,
         ]);
+
         return redirect('Manufacture/mo');
     }
 
@@ -134,11 +136,12 @@ class MoController extends Controller
         return redirect('Manufacture/mo');
     }
 
-    public function deleteMo($kode_mo){
+    public function deleteMo($kode_mo)
+    {
         $mo = MO::find($kode_mo);
 
         $mo->delete();
-       return redirect('Manufacture/mo');
+        return redirect('Manufacture/mo');
     }
 
     public function cetakMo()
@@ -151,20 +154,20 @@ class MoController extends Controller
         return view('mo.mo-cetak', ['moDatas' => $moDatas, 'boms' => $boms]);
     }
 
-    // public function moConfirm($kode_mo, Request $request)
-    // {
-    //     $bomList = BOMList::Where('kode_bom', $request->kode_bom)->get();
-    //     foreach ($bomList as $item) {
-    //         $product = Product::find($item->kode_produk);
-    //         $product->stok = $product->stok + $item->kuantitas;
-    //         $product->save();
-    //     }
-    //     $mo = MO::find($kode_mo);
-    //     $mo->status = $mo->status + 1;
-    //     $mo->kode_bom =  $mo->kode_bom;
-    //     $mo->kuantitas =  $mo->kuantitas;
-    //     $mo->tanggal =  $mo->tanggal;
-    //     $mo->save();
-    //     return redirect('Manufacture/mo');
-    // }
+    public function moConfirm($kode_mo, Request $request)
+    {
+        $bomList = BOMList::Where('kode_bom', $request->kode_bom)->get();
+        foreach ($bomList as $item) {
+            $product = Produk::find($item->kode_produk);
+            $product->stok = $product->stok + $item->kuantitas;
+            $product->save();
+        }
+        $mo = MO::find($kode_mo);
+        $mo->status = $mo->status + 1;
+        $mo->kode_bom =  $mo->kode_bom;
+        $mo->kuantitas =  $mo->kuantitas;
+        $mo->tanggal =  $mo->tanggal;
+        $mo->save();
+        return redirect('Manufacture/mo');
+    }
 }

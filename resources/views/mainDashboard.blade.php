@@ -93,17 +93,13 @@
             <!-- side bar BOM -->
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#BOM-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>BOM</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-menu-button-wide"></i><span>Bill Of Materials</span><i
+                        class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="BOM-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="{{ url('bom/bom') }}">
+                        <a href="{{ url('/bom/bom') }}">
                             <i class="bi bi-circle"></i><span>Data Bill Of Materials</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ url('bom/input-bom') }}">
-                            <i class="bi bi-circle"></i><span>Input Bill Of Materials</span>
                         </a>
                     </li>
                 </ul>
@@ -117,11 +113,6 @@
                     <li>
                         <a href="{{ url('Manufacture/mo') }}">
                             <i class="bi bi-circle"></i><span>Data Manufacture Order</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ url('Manufacture/mo-input') }}">
-                            <i class="bi bi-circle"></i><span>Input Manufacture Order</span>
                         </a>
                     </li>
                 </ul>
@@ -138,11 +129,6 @@
                             <i class="bi bi-circle"></i><span>Data Vendor</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ url('vendor/tambah') }}">
-                            <i class="bi bi-circle"></i><span>Tambah Vendor</span>
-                        </a>
-                    </li>
                 </ul>
             </li><!-- End Components Nav -->
             <li class="nav-item">
@@ -154,11 +140,6 @@
                     <li>
                         <a href="{{ url('rfq') }}">
                             <i class="bi bi-circle"></i><span>Data RFQ</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ url('rfq-input') }}">
-                            <i class="bi bi-circle"></i><span>Tambah RFQ</span>
                         </a>
                     </li>
                 </ul>
@@ -179,67 +160,74 @@
             <li class="nav-heading">Sales</li>
 
             <li class="nav-item">
-              <a class="nav-link collapsed" data-bs-target="#pembeli-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-menu-button-wide"></i><span>Pembeli</span><i class="bi bi-chevron-down ms-auto"></i>
-              </a>
-              <ul id="pembeli-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                  <a href="{{ url('pembeli') }}">
-                    <i class="bi bi-circle"></i><span>Data Pembeli</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="{{ url('pembeli/tambah') }}">
-                    <i class="bi bi-circle"></i><span>Tambah Pembeli</span>
-                  </a>
-                </li>
-              </ul>
+                <a class="nav-link collapsed" data-bs-target="#pembeli-nav" data-bs-toggle="collapse"
+                    href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>Pembeli</span><i
+                        class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="pembeli-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="{{ url('pembeli') }}">
+                            <i class="bi bi-circle"></i><span>Data Pembeli</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('pembeli/tambah') }}">
+                            <i class="bi bi-circle"></i><span>Tambah Pembeli</span>
+                        </a>
+                    </li>
+                </ul>
             </li><!-- End Tables Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#quotation-nav" data-bs-toggle="collapse" href="#">
-                  <i class="bi bi-menu-button-wide"></i><span>Sales Quotation</span><i class="bi bi-chevron-down ms-auto"></i>
+                <a class="nav-link collapsed" data-bs-target="#quotation-nav" data-bs-toggle="collapse"
+                    href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>Sales Quotation</span><i
+                        class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="quotation-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                  <li>
-                    <a href="{{ url('sq') }}">
-                      <i class="bi bi-circle"></i><span>Data Sales Quotation</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="{{ url('sq-input') }}">
-                      <i class="bi bi-circle"></i><span>Tambah Sales Quotation</span>
-                    </a>
-                  </li>
-                </ul>
-              </li><!-- End Forms Nav -->
-        
-              <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#order-nav" data-bs-toggle="collapse" href="#">
-                  <i class="bi bi-menu-button-wide"></i><span>Sales Orders</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="order-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                  <li>
-                    <a href="{{ url('so') }}">
-                      <i class="bi bi-circle"></i><span>Data Sales Order</span>
-                    </a>
-                  </li>
+                    <li>
+                        <a href="{{ url('sq') }}">
+                            <i class="bi bi-circle"></i><span>Data Sales Quotation</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('sq-input') }}">
+                            <i class="bi bi-circle"></i><span>Tambah Sales Quotation</span>
+                        </a>
+                    </li>
                 </ul>
             </li><!-- End Forms Nav -->
-      
-            <li class="nav-heading">Accounting</li>
-      
+
             <li class="nav-item">
-              <a class="nav-link collapsed" data-bs-target="#accounting-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-menu-button-wide"></i><span>Accounting</span><i class="bi bi-chevron-down ms-auto"></i>
-              </a>
-              <ul id="accounting-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                  <a href="/accounting">
-                    <i class="bi bi-circle"></i><span>Data Accounting</span>
-                  </a>
-                </li>
-              </ul>
+                <a class="nav-link collapsed" data-bs-target="#order-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>Sales Orders</span><i
+                        class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="order-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="{{ url('so') }}">
+                            <i class="bi bi-circle"></i><span>Data Sales Order</span>
+                        </a>
+                    </li>
+                </ul>
+            </li><!-- End Forms Nav -->
+
+            <li class="nav-heading">Accounting</li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#accounting-nav" data-bs-toggle="collapse"
+                    href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>Accounting</span><i
+                        class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="accounting-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="/accounting">
+                            <i class="bi bi-circle"></i><span>Data Accounting</span>
+                        </a>
+                    </li>
+                </ul>
             </li><!-- End Tables Nav -->
     </aside><!-- End Sidebar-->
 
@@ -271,4 +259,5 @@
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
 </body>
+
 </html>

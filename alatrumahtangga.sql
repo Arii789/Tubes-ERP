@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2023 at 10:39 AM
+-- Generation Time: Jan 03, 2024 at 02:37 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -31,19 +31,13 @@ CREATE TABLE `bahan` (
   `id` int(11) NOT NULL,
   `nama` varchar(30) NOT NULL,
   `kode` varchar(30) NOT NULL,
+  `bahan_qr` int(11) NOT NULL,
   `harga` int(30) NOT NULL,
-  `stok` int(11) DEFAULT NULL,
+  `stok` int(255) DEFAULT NULL,
   `gambar` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `bahan`
---
-
-INSERT INTO `bahan` (`id`, `nama`, `kode`, `harga`, `stok`, `gambar`, `created_at`, `updated_at`) VALUES
-(6, 'Plastik', 'BDN-0001', 2000, NULL, '1704014016_Plastik.jpg', '2023-12-31 02:13:36', '2023-12-31 02:13:36');
 
 -- --------------------------------------------------------
 
@@ -110,7 +104,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (5, '2023_10_20_140927_create_produks_table', 1),
-(6, '2023_10_20_143836_create_bahans_table', 2);
+(6, '2023_10_20_143836_create_bahans_table', 2),
+(7, '2024_01_02_233018_add_timestamps_to_mo_table', 3),
+(8, '2024_01_03_001344_add_timestamps_to_rfq_table', 4);
 
 -- --------------------------------------------------------
 
@@ -119,11 +115,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `mo` (
-  `kode_mo` varchar(20) NOT NULL,
-  `kode_bom` varchar(20) NOT NULL,
-  `kuantitas` float NOT NULL,
-  `tanggal` varchar(20) NOT NULL,
-  `status` int(1) NOT NULL
+  `kode_mo` varchar(255) NOT NULL,
+  `kode_bom` varchar(255) NOT NULL,
+  `kuantitas` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `status` int(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -181,19 +179,13 @@ CREATE TABLE `produk` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `nama` varchar(255) DEFAULT NULL,
   `kode` varchar(255) NOT NULL,
+  `produk_qr` int(11) NOT NULL,
   `harga` int(30) NOT NULL,
   `stok` int(11) DEFAULT NULL,
   `gambar` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `produk`
---
-
-INSERT INTO `produk` (`id`, `nama`, `kode`, `harga`, `stok`, `gambar`, `created_at`, `updated_at`) VALUES
-(8, 'Tempat Sampat Plastik', 'KDP-0001', 20000, NULL, '1704013944_tempat sampah.png', '2023-12-31 02:12:24', '2023-12-31 02:12:24');
 
 -- --------------------------------------------------------
 
@@ -207,7 +199,9 @@ CREATE TABLE `rfq` (
   `tanggal_order` varchar(20) NOT NULL,
   `status` int(11) NOT NULL,
   `total_harga` double NOT NULL DEFAULT 0,
-  `metode_pembayaran` int(11) NOT NULL
+  `metode_pembayaran` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -294,6 +288,13 @@ CREATE TABLE `vendor` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `vendor`
+--
+
+INSERT INTO `vendor` (`id`, `nama`, `kontak`, `alamat`, `created_at`, `updated_at`) VALUES
+(4, 'PT. Ratata Break', '+6281233554132', 'Bandung, Cimahi, Jawa Barat 65435', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -416,13 +417,13 @@ ALTER TABLE `vendor`
 -- AUTO_INCREMENT for table `bahan`
 --
 ALTER TABLE `bahan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `bom_list`
 --
 ALTER TABLE `bom_list`
-  MODIFY `kode_bom_list` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `kode_bom_list` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -434,7 +435,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `pembeli`
@@ -452,13 +453,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `rfq_list`
 --
 ALTER TABLE `rfq_list`
-  MODIFY `kode_rfq_list` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `kode_rfq_list` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `sq_list`
@@ -470,7 +471,7 @@ ALTER TABLE `sq_list`
 -- AUTO_INCREMENT for table `temp_produce`
 --
 ALTER TABLE `temp_produce`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -482,7 +483,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `vendor`
 --
 ALTER TABLE `vendor`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

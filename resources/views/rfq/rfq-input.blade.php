@@ -21,37 +21,47 @@
                             <h5 class="card-title">Tambah Data Request For Quotation</h5>
 
                             <!-- General Form Elements -->
-                            <form action="{{ url('rfq-input') }}" method="post" enctype="multipart/form-data">
-                                {{ csrf_field() }}
-
-                                <!-- Di view rfq-input.blade.php -->
+                            <form method="post" action="{{ route('rfq.upload') }}">
+                                @csrf
+                                
                                 <div class="row mb-3">
                                     <label for="inputText" class="col-sm-2 col-form-label">Kode RFQ</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="kode_rfq" id="kode_rfq" class="form-control"
-                                            value="{{ $RfqCode }}" readonly>
+                                        <input type="text" name="kode_rfq" id="kode_rfq" class="form-control" value="{{ $newRFQCode }}" readonly>
                                     </div>
                                 </div>
-
-
+                                
                                 <div class="row mb-3">
                                     <label class="col-sm-2 col-form-label">Vendor</label>
                                     <div class="col-sm-10">
                                         <select class="form-select" aria-label="Default select example" name="kode_vendor"
                                             id="kode_vendor">
-                                            <option selected>Pilih Vendor</option>
+                                            <option selected disabled>Pilih Vendor</option>
                                             @if ($vendors->count())
                                                 @foreach ($vendors as $item)
                                                     <option value="{{ $item->id }}">{{ $item->nama }}</option>
                                                 @endforeach
                                             @endif
                                         </select>
+                                        @if ($errors->has('kode_vendor'))
+                                            <span class="text-danger">{{ $errors->first('kode_vendor') }}</span>
+                                        @endif
                                     </div>
                                 </div>
 
                                 <div class="col-12">
                                     <button class="btn btn-primary w-100" type="submit">Simpan</button>
                                 </div>
+
+                                @if ($errors->any())
+                                    <div class="mt-3">
+                                        <ul class="list-group">
+                                            @foreach ($errors->all() as $error)
+                                                <li class="list-group-item list-group-item-danger">{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                             </form><!-- End General Form Elements -->
 
                         </div>

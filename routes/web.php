@@ -69,8 +69,8 @@ Route::get('Manufacture/mo/cetak', [MoController::class, 'cetakMo'])->name('Mo-c
 Route::get('rfq', [RfqController::class, 'rfq']);
 Route::get('po', [RfqController::class, 'po']);
 Route::get('rfq-input', [RfqController::class, 'rfqInput']);
-Route::post('rfq-input', [RfqController::class, 'upload']);
-Route::get('rfq-input-item/{kode_rfq}', [RfqController::class, 'rfqInputItems']);
+Route::post('rfq-upload', [RfqController::class, 'upload'])->name('rfq.upload');
+Route::get('rfq-input-item/{kode_rfq}', [RfqController::class, 'rfqInputItems'])->name('rfq.input.item');
 Route::post('rfq-input-item', [RfqController::class, 'rfqUploadItems']);
 Route::get('po-input-item/{kode_rfq}', [RfqController::class, 'poInputItems']);
 Route::post('rfq/save', [RfqController::class, 'rfqSaveItems']);

@@ -13,4 +13,5 @@ class RFQList extends Model
     public $incrementing = false;
     protected $fillable = ['kode_rfq_list', 'kode_rfq','kode_bahan','kuantitas'];
     public $timestamps = false;
+
 }

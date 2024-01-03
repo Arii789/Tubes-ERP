@@ -28,44 +28,36 @@ class RfqController extends Controller
     public function rfqInput()
     {
         $vendors = Vendor::all();
-        $lastRfq = RFQ::orderBy('kode_rfq', 'desc')->first(); // Corrected column name
-        $lastRfqId = $lastRfq ? intval(substr($lastRfq->kode_rfq, 5)) : 0;
-        $newRfqId = $lastRfqId + 1;
-        $RfqCode = 'KDRFQ-' . str_pad($newRfqId, 4, '0', STR_PAD_LEFT);
-        return view('rfq.rfq-input', ['RfqCode' => $RfqCode, 'vendors' => $vendors]);
+        $newRFQCode = RFQ::generateUniqueKodeRfq();
+
+        return view('rfq.rfq-input', ['vendors' => $vendors, 'newRFQCode' => $newRFQCode]);
     }
+
     public function upload(Request $request)
     {
-        $tanggal = now(); // Use current timestamp
-
         $request->validate([
             'kode_vendor' => [
                 'required',
-                Rule::exists('vendor', 'id'), // Validate that 'kode_vendor' exists in the 'vendor' table
+                Rule::exists('vendor', 'id'),
             ],
         ]);
 
-        // Retrieve the latest kode_rfq directly from the RFQ model
-        $latestRFQ = RFQ::orderBy('kode_rfq', 'desc')->first();
+        $tanggal = now();
 
-        // Extract the numeric part of the latest kode_rfq and increment it
-        $newRFQId = $latestRFQ ? (int)substr($latestRFQ->kode_rfq, 5) + 1 : 1;
+        try {
+            $rfq = RFQ::create([
+                'kode_vendor' => $request->kode_vendor,
+                'tanggal_order' => $tanggal,
+                'status' => 1,
+                'total_harga' => 0,
+                'metode_pembayaran' => 0
+            ]);
 
-        // Build the new kode_rfq
-        $newRFQCode = 'KDRFQ-' . str_pad($newRFQId, 4, '0', STR_PAD_LEFT);
-
-        RFQ::create([
-            'kode_rfq' => $newRFQCode,
-            'kode_vendor' => $request->kode_vendor,
-            'tanggal_order' => $tanggal,
-            'status' => 1,
-            'total_harga' => 0,
-            'metode_pembayaran' => 0
-        ]);
-
-        return redirect('rfq-input-item/' . $newRFQCode);
+            return redirect()->route('rfq.input.item', ['kode_rfq' => $rfq->kode_rfq]);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error creating RFQ. Please try again.');
+        }
     }
-
 
     public function rfqInputItems($kode_rfq)
     {
@@ -110,20 +102,23 @@ class RfqController extends Controller
         return view('rfq.po-input-item', ['rfq' => $rfq, 'rfqList' => $rfqList, 'products' => $produk]);
     }
 
-    public function deleteList($kode_rfq_list)
+    public function deleteList(RFQList $rfqList)
     {
-        $rfq_list = RFQList::find($kode_rfq_list);
-        $product = Bahan::find($rfq_list->kode_bahan);
-        $harga = $product->harga;
-        $rfq = RFQ::find($rfq_list->kode_rfq);
-        $harga_lama = $rfq->total_harga;
-        $harga_baru = $harga_lama - ($harga * $rfq_list->kuantitas);
+        $product = Bahan::find($rfqList->kode_bahan);
 
-        $rfq->total_harga = $harga_baru;
-        $rfq->save();
+        if ($product) {
+            $harga = $product->harga;
+            $rfq = RFQ::find($rfqList->kode_rfq);
+            $harga_lama = $rfq->total_harga;
+            $harga_baru = $harga_lama - ($harga * $rfqList->kuantitas);
 
-        $rfq_list->delete();
-        return redirect('rfq-input-item/' . $rfq_list->kode_rfq);
+            $rfq->total_harga = $harga_baru;
+            $rfq->save();
+        }
+
+        $rfqList->delete();
+
+        return redirect()->route('rfq.input.item', ['kode_rfq' => $rfqList->kode_rfq]);
     }
 
     public function rfqSaveItems(Request $request)
@@ -151,12 +146,10 @@ class RfqController extends Controller
         foreach ($rfqlist as $item) {
             $product = Bahan::find($item->kode_bahan);
 
-            if ($product) {  // Check if the product exists
+            if ($product) {
                 $product->stok = $product->stok + $item->kuantitas;
                 $product->save();
             } else {
-                // Handle the case where the product is not found
-                // You can log an error or take appropriate action
             }
         }
 
@@ -164,7 +157,6 @@ class RfqController extends Controller
         $rfq->metode_pembayaran = $request->payment;
         $rfq->status = $rfq->status + 1;
         $rfq->save();
-
         return redirect('po');
     }
 
@@ -187,10 +179,6 @@ class RfqController extends Controller
         $rfq = RFQ::join('vendor', 'rfq.kode_vendor', '=', 'vendor.id')
             ->where('rfq.kode_rfq', $kode_rfq)
             ->get(['rfq.*', 'vendor.nama', 'vendor.alamat']);
-
         return view('rfq.po-invoice', ['rfqlist' => $rfqList, 'rfq' => $rfq]);
-
-        // $pdf = app('dompdf.wrapper')->loadView('rfq.po-invoice', ['rfqlist' => $rfqList, 'rfq' => $rfq]);
-        // return $pdf->stream('invoice-po.pdf');
     }
 }

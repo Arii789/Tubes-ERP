@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">Kuantitas</label>
+                  <label for="inputText" class="col-sm-2 col-form-label">Jumlah Bahan</label>
                     <div class="col-sm-10">
                       <input type="text" name="kuantitas" id="kuantitas" class="form-control">
                     </div>
@@ -92,7 +92,7 @@
                       <th scope="col">#</th>
                       <th scope="col">Kode</th>
                       <th scope="col">Nama Bahan</th>
-                      <th scope="col">Kuantitas</th>
+                      <th scope="col">Jumlah Bahan</th>
                       <th scope="col">Satuan</th>
                       <th scope="col">Harga Satuan</th>
                       <th scope="col">Harga Total<th>
@@ -129,6 +129,10 @@
                 </tbody>
               </table>
               <!-- End Table with stripped rows -->
+              <div class="col-md-1">
+                <a href="{{ url('/bom/print-bom-list/' . $bom->kode_bom) }}" target="_blank">
+                  <button class="btn btn-info w-100" type="submit">Cetak Bahan</button>
+              </div>
             </div>
           </div>
 
@@ -136,7 +140,7 @@
             <div class="card-body">
             <h5 class="card-title">Total Harga</h5>
               <label for="text_harga"> Total Harga : </label>
-              <label for="total_harga" id="val"> 0</label>
+              <label for="total_harga" id="val"> 0</label> 
             </div>
           </div>
 

@@ -6,7 +6,7 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-          <li class="breadcrumb-item"><a href="{{ url('/Manufacture/bahan') }}">Manufacturing Order</a></li>
+          <li class="breadcrumb-item"><a href="{{ url('/Manufacture/mo') }}">Manufacturing Order</a></li>
           <li class="breadcrumb-item active"><a> Manufacturing Order Check Availability</a></li>
         </ol>
       </nav>

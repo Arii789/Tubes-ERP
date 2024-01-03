@@ -31,7 +31,7 @@
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Nama Produk</th>
-                                        <th scope="col">Kuantitas</th>
+                                        <th scope="col">Jumlah Produk</th>
                                         <th scope="col">Nama BoM</th>
                                         <th scope="col">Biaya Produksi</th>
                                         <th scope="col">Aksi</th>

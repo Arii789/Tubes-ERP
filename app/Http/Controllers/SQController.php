@@ -43,7 +43,9 @@ class SQController extends Controller
             'total_harga' => 0,
             'metode_pembayaran' => 0
         ]);
-        return redirect()->route('sq-input-item/', ['kode_sq' => $sq->kode_sq]);
+    
+        // Use the route() helper function to generate the correct URL
+        return redirect()->route('sq-input-item', ['kode_sq' => $sq->kode_sq]);
     }
 
     public function sqInputItems($kode_sq)
@@ -51,12 +53,16 @@ class SQController extends Controller
         $sq = SQ::join('pembeli', 'sq.kode_pembeli', '=', 'pembeli.id')
             ->where('sq.kode_sq', $kode_sq)
             ->first(['sq.*', 'pembeli.nama']);
+
         $sqList = SQList::join('produk', 'sq_list.kode_produk', '=', 'produk.id')
             ->where('sq_list.kode_sq', $kode_sq)
             ->get(['sq_list.*', 'produk.nama', 'produk.harga']);
+
         $produk = Produk::all();
+
         return view('sq.sq-input-item', ['sq' => $sq, 'sqList' => $sqList, 'products' => $produk]);
     }
+
 
     public function sqUploadItems(Request $request)
     {

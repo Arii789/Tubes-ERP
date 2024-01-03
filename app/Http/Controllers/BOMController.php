@@ -7,6 +7,7 @@ use App\Models\BOMList;
 use App\Models\Produk;
 use App\Models\Bahan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class BOMController extends Controller
 {
@@ -32,7 +33,7 @@ class BOMController extends Controller
     {
         $bom = BOM::join('produk', 'bom.kode_produk', '=', 'produk.id')
             ->where('bom.kode_bom', $kode_bom)
-            ->first(['bom.*', 'produk.nama','produk.harga']);
+            ->first(['bom.*', 'produk.nama', 'produk.harga']);
         $bomList = BOMList::join('bahan', 'bom_list.kode_bahan', '=', 'bahan.id')
             ->where('bom_list.kode_bom', $kode_bom)
             ->get(['bom_list.*', 'bahan.nama', 'bahan.harga']);
@@ -72,7 +73,8 @@ class BOMController extends Controller
         return redirect('bom/input-item-bom/' . $request->kode_bom);
     }
 
-    public function deleteList($kode_bom_list){
+    public function deleteList($kode_bom_list)
+    {
         $bom_list = BOMList::find($kode_bom_list);
         $product = Bahan::find($bom_list->kode_bahan);
         $harga = $product->harga;
@@ -84,18 +86,40 @@ class BOMController extends Controller
         $bom->save();
 
         $bom_list->delete();
-       return redirect('bom/input-item-bom/' . $bom_list->kode_bom);
+        return redirect('bom/input-item-bom/' . $bom_list->kode_bom);
     }
 
 
     public function deleteBom($kode_bom)
     {
-        // Delete associated BOMList records
         BOMList::where('kode_bom', $kode_bom)->delete();
 
-        // Delete the BOM record
         BOM::where('kode_bom', $kode_bom)->delete();
 
         return redirect('bom/bom/');
+    }
+    public function cetakBom()
+    {
+        $bom = BOM::join('produk', 'bom.kode_produk', '=', 'produk.id')
+            ->get(['bom.*', 'produk.nama']);
+        return view('bom.cetak-bom', compact('bom'));
+    }
+    public function printBOMList($kode_bom)
+    {
+        $bom = BOM::join('produk', 'bom.kode_produk', '=', 'produk.id')
+            ->where('bom.kode_bom', $kode_bom)
+            ->get(['bom.*', 'produk.nama']);
+        $bomList = BOMList::join('bahan', 'bom_list.kode_bahan', '=', 'bahan.id')
+            ->where('bom_list.kode_bom', $kode_bom)
+            ->get(['bom_list.*', 'bahan.nama', 'bahan.harga']);
+
+        return view('bom.cetak-item-bom', compact('bom', 'bomList'));
+        // $view = View::make('bom.cetak-item-bom', compact('bom', 'bomList'));
+        // $html = $view->render();
+
+        // return response()->make($html, 200, [
+        //     'Content-Type' => 'application/pdf',
+        //     'Content-Disposition' => 'inline; filename="cetak-item-bom.pdf"',
+        // ]);
     }
 }

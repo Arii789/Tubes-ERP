@@ -107,7 +107,7 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="{{ asset('assets/img/among us.png') }}" alt="" width="150px">
+                                <img src="{{ asset('assets/img/logo pdf erp.png') }}" alt="" width="150px">
                             </td>
 
                             @if($rfq->count())

@@ -26,6 +26,7 @@ Route::get('/', function () {
     return view('index');
 });
 Route::get('/get-chart-data', [ProdukController::class, 'getChartData']);
+Route::get('/get-last-updated-time', [ProdukController::class, 'getLastUpdatedTime']);
 
 Route::prefix('Manufacture')->group(function () {
     Route::get('/produk', [ProdukController::class, 'index']);
@@ -64,6 +65,7 @@ Route::prefix('bom')->group(function () {
     Route::get('/bom-delete-item/{kode_bom_list}', [BOMController::class, 'deleteList']);
     Route::get('/bom-delete/{kode_bom}', [BOMController::class, 'deleteBom']);
     Route::get('/cetak-bom', [BOMController::class, 'cetakBom'])->name('cetakBom');
+    Route::get('/print-bom-list/{kode_bom}', [BOMController::class, 'printBOMList']);
 });
 
 Route::get('rfq', [RfqController::class, 'rfq']);
@@ -102,19 +104,19 @@ Route::prefix('pembeli')->group(function () {
 
 Route::get('sq', [SQController::class, 'sq']);
 Route::get('sq-input', [SQController::class, 'sqInput']);
-Route::get('so', [SQController::class, 'so']);
 Route::post('sq-input', [SQController::class, 'upload']);
-Route::get('sq-input-item/{kode_sq}', [SQController::class, 'sqInputItems']);
+Route::get('sq-input-item/{kode_sq}', [SQController::class, 'sqInputItems'])->name('sq-input-item');
 Route::post('sq-input-item', [SQController::class, 'sqUploadItems']);
-Route::get('so-input-item/{kode_sq}', [SQController::class, 'soInputItems']);
-Route::post('so-input-item', [SQController::class, 'soUploadItems']);
 Route::post('sq/save', [SQController::class, 'sqSave']);
 Route::post('sq/saveSo', [SQController::class, 'sqSaveSo']);
 Route::post('sq/invoice', [SQController::class, 'sqCreateInvoice']);
 Route::post('sq/delivery', [SQController::class, 'sqDelivery']);
-Route::get('so-invoice/{kode_sq}', [SQController::class, 'getPDF']);
 Route::get('sq-delete-item/{kode_sq_list}', [SQController::class, 'deleteListSQ']);
 Route::get('sq-delete/{kode_sq}', [SQController::class, 'deleteSQ']);
+Route::get('so', [SQController::class, 'so']);
+Route::get('so-input-item/{kode_sq}', [SQController::class, 'soInputItems']);
+Route::post('so-input-item', [SQController::class, 'soUploadItems']);
+Route::get('so-invoice/{kode_sq}', [SQController::class, 'getPDF']);
 
 Route::get('/accounting', [AccountingController::class, 'index']);
 Route::get('/accounting-invoicing', [AccountingController::class, 'invoicing']);

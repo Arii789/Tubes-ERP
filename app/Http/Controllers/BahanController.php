@@ -46,7 +46,7 @@ class BahanController extends Controller
 
         $lastBahan = Bahan::orderBy('id', 'desc')->first();
         $lastBahanId = $lastBahan ? $lastBahan->id : 0;
-        $bahanCode = 'BDN-' . str_pad($lastBahanId + 1, 4, '0', STR_PAD_LEFT);
+        $bahanCode = 'KDB-' . str_pad($lastBahanId + 1, 4, '0', STR_PAD_LEFT);
 
         $gambar = $request->file('gambar');
         $nama_gambar = time() . "_" . $gambar->getClientOriginalName();

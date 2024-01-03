@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\produk;
+use App\Models\bahan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -121,10 +122,20 @@ class ProdukController extends Controller
         $produk->delete();
         return back();
     }
+
     public function getChartData()
     {
-        $produkData = Produk::select('nama', 'harga')->get();
+        $produkChartData = Produk::select('nama', 'harga')->get();
+        $bahanChartData = Bahan::select('nama', 'harga')->get();
 
-        return response()->json($produkData);
+        return response()->json(['produk' => $produkChartData, 'bahan' => $bahanChartData]);
+    }
+
+    public function getLastUpdatedTime()
+    {
+        $produkLastUpdatedTime = Produk::max('updated_at');
+        $bahanLastUpdatedTime = Bahan::max('updated_at');
+
+        return response()->json(['last_updated_time' => $produkLastUpdatedTime, 'last_updated_time_bahan' => $bahanLastUpdatedTime]);
     }
 }

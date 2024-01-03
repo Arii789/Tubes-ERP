@@ -116,7 +116,7 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="{{ asset('backend/img/logo-es.png') }}" alt="" width="150px">
+                                <img src="{{ asset('assets/img/logo pdf erp.png') }}" alt="" width="150px">
                             </td>
                         </tr>
                     </table>
@@ -128,9 +128,9 @@
                     <table>
                         <tr>
                             <td>
-                                PT. N'Ice Cream<br>
-                                Kec. Ngoro Kab. Mojokerto, Jawa Timur<br>
-                                Gadon, Kutogirang, 61385
+                                Perusahaan Alat Rumah Tangga<br>
+                                Kec.Singosari, Jawa Timur<br>
+                                Malang, 617543
                             </td>
                         </tr>
                     </table>

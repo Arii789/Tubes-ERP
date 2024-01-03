@@ -32,7 +32,7 @@
                                         <th scope="col">#</th>
                                         <th scope="col">Kode MO</th>
                                         <th scope="col">Nama Produk</th>
-                                        <th scope="col">Kuantitas</th>
+                                        <th scope="col">Total Produksi</th>
                                         <th scope="col">Tanggal Order</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Aksi</th>

@@ -61,7 +61,7 @@
                                     
                                     <div class="col-sm-10">
                                         <input type="file" name="gambar" id="gambar" class="form-control"
-                                            value="{{ asset('/img_produk/' . $produk->gambar) }}" style="max-width: 7rem;">
+                                            value="{{ asset('/img_produk/' . $produk->gambar) }}" style="max-width: 30rem;">
                                     </div>
                                 </div>
                                 <div class="col-12">

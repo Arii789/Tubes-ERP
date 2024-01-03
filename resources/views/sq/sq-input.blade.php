@@ -5,9 +5,9 @@
             <h1>Tambah Sales Quotation</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item">Sales</li>
-                    <li class="breadcrumb-item active">Tambah Sales Quotation</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('/sq') }}">Sales Quotation</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ url('/sq-input') }}">Tambah Sales Quotation</a></li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->

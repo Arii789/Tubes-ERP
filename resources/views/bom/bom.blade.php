@@ -5,9 +5,8 @@
             <h1>Data Bill of Material</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item">BoM</li>
-                    <li class="breadcrumb-item active">Data BoM</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ url('/bom/bom') }}">Bill of Material</a></li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->

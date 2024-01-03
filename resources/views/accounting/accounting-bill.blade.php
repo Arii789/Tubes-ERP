@@ -5,9 +5,9 @@
       <h1>Data Pembelian Bahan</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Home</a></li>
-          <li class="breadcrumb-item">Accounting</li>
-          <li class="breadcrumb-item active">Data Pembelian Bahan</li>
+          <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{ url('/accounting') }}">Data Accounting</a></li>
+          <li class="breadcrumb-item active"><a href="{{ url('/accounting-bill') }}">Vendor Bill</a> <a>OR <a href="{{ url('/accounting-invoicing') }}">Customer Invoicing</a></li>
         </ol>
       </nav>
     </div><!-- End Page Title -->

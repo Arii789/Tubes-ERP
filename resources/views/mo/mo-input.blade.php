@@ -5,9 +5,9 @@
             <h1>Tambah Manufacturing Order</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item">Manufacturing Order</li>
-                    <li class="breadcrumb-item active">Tambah Manufacturing Order</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('/Manufacture/bahan') }}">Manufacturing Order</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ url('/Manufacture/mo-input') }}">Manufacturing Order Input</a></li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->

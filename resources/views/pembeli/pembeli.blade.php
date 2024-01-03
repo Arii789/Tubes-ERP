@@ -7,9 +7,8 @@
       <h1>Data Pembeli</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/home">Home</a></li>
-          <li class="breadcrumb-item">Sales</li>
-          <li class="breadcrumb-item active">Data Pembeli</li>
+          <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+          <li class="breadcrumb-item active"><a href="{{ url('/pembeli') }}">Sales Data Pembeli</a></li>
         </ol>
       </nav>
     </div><!-- End Page Title -->

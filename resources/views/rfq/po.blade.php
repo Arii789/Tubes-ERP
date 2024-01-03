@@ -5,9 +5,8 @@
             <h1>Data Purchase Orders</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item">Purchasing</li>
-                    <li class="breadcrumb-item active">Data Purchase Orders</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ url('/po') }}"> Purchase Orders</a></li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->

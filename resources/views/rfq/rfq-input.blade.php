@@ -5,9 +5,11 @@
             <h1>Tambah Request For Quotation</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item">Purchasing</li>
-                    <li class="breadcrumb-item active">Tambah RFQ</li>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                        <li class="breadcrumb-item "><a href="{{ url('/rfq') }}">Request For Quotation</a></li>
+                        <li class="breadcrumb-item active"><a href="{{ url('/rfq-input') }}">Input Request For Quotation</a></li>
+                    </ol>
                 </ol>
             </nav>
         </div><!-- End Page Title -->

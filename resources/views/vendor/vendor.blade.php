@@ -5,9 +5,8 @@
             <h1>Data Vendor</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item">Purchasing</li>
-                    <li class="breadcrumb-item active">Data Vendor</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ url('/vendor') }}">Pruchasing Data Vendor</a></li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->

@@ -6,8 +6,8 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url('/Manufacture/bahan') }}">Manufacturing</a></li>
-                    <li class="breadcrumb-item active">Edit Bahan</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/Manufacture/bahan') }}">Manufacturing Bahan</a></li>
+                    <li class="breadcrumb-item active"><a>Manufacturing Edit Bahan</a></li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->

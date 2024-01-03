@@ -5,10 +5,9 @@
       <h1>Edit Status Sales Order</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/home">Home</a></li>
-          <li class="breadcrumb-item">Sales</li>
-          <li class="breadcrumb-item">Sales Orders</li>
-          <li class="breadcrumb-item active">Data Item Sales Order</li>
+          <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{ url('/so') }}">Sales Order</a></li>
+          <li class="breadcrumb-item active"><a>Edit Sales Order</a></li>
         </ol>
       </nav>
     </div><!-- End Page Title -->

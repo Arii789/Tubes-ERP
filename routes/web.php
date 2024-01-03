@@ -80,23 +80,25 @@ Route::get('po-invoice/{kode_rfq}', [RfqController::class, 'getPDF']);
 Route::get('rfq-delete-item/{kode_rfq_list}', [RfqController::class, 'deleteList']);
 Route::get('rfq-delete/{kode_rfq}', [RfqController::class, 'deleteRfq']);
 
-// Route::prefix('bom')->group(function () {
+Route::prefix('vendor')->group(function () {
+    Route::get('', [VendorController::class, 'index']);
+    Route::get('/tambah', [VendorController::class, 'create']);
+    Route::post('/simpan', [VendorController::class, 'store'])->name('vendor-simpan');
+    Route::get('/edit/{id}', [VendorController::class, 'edit']);
+    Route::put('/update/{id}', [VendorController::class, 'update'])->name('vendor-update');
+    Route::get('/delete/{id}', [VendorController::class, 'destroy'])->name('vendor-delete');
+});
 
+Route::prefix('pembeli')->group(function () {
+    Route::get('', [PembeliController::class, 'index']);
+    Route::get('/tambah', [PembeliController::class, 'create']);
+    Route::post('/simpan', [PembeliController::class, 'store'])->name('pembeli-simpan');
+    Route::get('/edit/{id}', [PembeliController::class, 'edit']);
+    Route::put('/update/{id}', [PembeliController::class, 'update'])->name('pembeli-update');
+    Route::get('/delete/{id}', [PembeliController::class, 'destroy'])->name('pembeli-delete');
+});
+// Route::prefix('pembeli')->group(function () {
 // });
-
-Route::get('vendor', [VendorController::class, 'index']);
-Route::get('vendor/tambah', [VendorController::class, 'create']);
-Route::post('vendor/simpan', [VendorController::class, 'store'])->name('vendor-simpan');
-Route::get('vendor/edit/{id}', [VendorController::class, 'edit']);
-Route::put('vendor/update/{id}', [VendorController::class, 'update'])->name('vendor-update');
-Route::get('vendor/delete/{id}', [VendorController::class, 'destroy'])->name('vendor-delete');
-
-Route::get('pembeli', [PembeliController::class, 'index']);
-Route::get('pembeli/tambah', [PembeliController::class, 'create']);
-Route::post('pembeli/simpan', [PembeliController::class, 'store'])->name('pembeli-simpan');
-Route::get('pembeli/edit/{id}', [PembeliController::class, 'edit']);
-Route::put('pembeli/update/{id}', [PembeliController::class, 'update'])->name('pembeli-update');
-Route::get('pembeli/delete/{id}', [PembeliController::class, 'destroy'])->name('pembeli-delete');
 
 Route::get('sq', [SQController::class, 'sq']);
 Route::get('sq-input', [SQController::class, 'sqInput']);

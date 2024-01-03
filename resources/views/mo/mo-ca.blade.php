@@ -5,9 +5,9 @@
       <h1>Check Availability</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Home</a></li>
-          <li class="breadcrumb-item">Manufacturing Order</li>
-          <li class="breadcrumb-item active">Check Availability</li>
+          <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{ url('/Manufacture/bahan') }}">Manufacturing Order</a></li>
+          <li class="breadcrumb-item active"><a> Manufacturing Order Check Availability</a></li>
         </ol>
       </nav>
     </div><!-- End Page Title -->

@@ -5,9 +5,9 @@
       <h1>Tambah Item Bill of Material</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Home</a></li>
-          <li class="breadcrumb-item">BoM</li>
-          <li class="breadcrumb-item active">Tambah Item BoM</li>
+          <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{ url('/bom/bom') }}">Bill of Material</a></li>
+          <li class="breadcrumb-item active"><a>Input Item Bill of Material</a></li>
         </ol>
       </nav>
     </div><!-- End Page Title -->

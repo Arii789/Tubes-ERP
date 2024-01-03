@@ -137,9 +137,9 @@
                             @endif
 
                             <td>
-                                PT. ART<br>
-                                Kec.Butnik, Jawa Timur<br>
-                                Situbondo, 99999
+                                Perusahaan Alat Rumah Tangga<br>
+                                Kec.Singosari, Jawa Timur<br>
+                                Malang, 617543
                             </td>
                         </tr>
                     </table>

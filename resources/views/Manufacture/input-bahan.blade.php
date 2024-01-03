@@ -5,7 +5,9 @@
             <h1>Tambah Bahan</h1>
             <nav>
                 <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                     <li class="breadcrumb-item"><a href="{{ url('/Manufacture/bahan') }}">Manufacturing Bahan</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ url('/Manufacture/input-bahan') }}">Manufacturing Input Bahan</a></li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->

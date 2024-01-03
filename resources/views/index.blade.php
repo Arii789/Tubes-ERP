@@ -24,7 +24,7 @@
                                 class="chartjs-render-monitor"></canvas>
                         </div>
                     </div>
-                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                    <div class="card-footer small text-muted" id="lastUpdated">Loading...</div>
                 </div>
                 <div class="col-lg-11">
                     <h6>ERP Perusahaan Alat Rumah Tangga</h6>
@@ -107,6 +107,36 @@
                 const prices = data.map(product => product.harga);
                 renderBarChart(labels, prices);
             });
+
+        // Fungsi untuk mengambil waktu terakhir produk diedit
+        function getLastUpdatedTime() {
+            // Gantilah URL sesuai dengan endpoint atau route yang memberikan waktu terakhir produk diedit
+            fetch('/get-last-updated-time')
+                .then(response => response.json())
+                .then(data => {
+                    const lastUpdatedElement = document.getElementById('lastUpdated');
+                    lastUpdatedElement.innerText = 'Updated ' + timeAgo(data.lastUpdated); // Gunakan fungsi untuk menghitung waktu yang lalu
+                });
+        }
+
+        // Fungsi untuk menghitung waktu yang lalu
+        function timeAgo(time) {
+            // Implementasikan logika penghitungan waktu yang lalu sesuai kebutuhan Anda
+            // Misalnya, Anda bisa menggunakan pustaka seperti "moment.js" untuk ini
+            // Contoh sederhana: 
+            const seconds = Math.floor((new Date() - new Date(time)) / 1000);
+            const interval = Math.floor(seconds / 31536000);
+
+            if (interval > 1) {
+                return interval + " years ago";
+            } else if (interval === 1) {
+                return interval + " year ago";
+            }
+            // Sisanya sesuaikan dengan kebutuhan Anda
+        }
+
+        // Panggil fungsi untuk mengambil waktu terakhir produk diedit
+        getLastUpdatedTime();
     });
 
     function renderBarChart(labels, prices) {
@@ -133,3 +163,4 @@
         });
     }
 </script>
+

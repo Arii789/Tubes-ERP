@@ -5,11 +5,10 @@
       <h1>Tambah Item Request For Quotation</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Home</a></li>
-          <li class="breadcrumb-item">Purchasing</li>
-          <li class="breadcrumb-item">RFQ</li>
-          <li class="breadcrumb-item active">Tambah Item RFQ</li>
-        </ol>
+          <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{ url('/rfq') }}">Request For Quotation</a></li>
+          <li class="breadcrumb-item active"><a>Input Item Request For Quotation</a></li>
+      </ol>
       </nav>
     </div><!-- End Page Title -->
 

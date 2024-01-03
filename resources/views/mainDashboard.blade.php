@@ -62,7 +62,6 @@
     <aside id="sidebar" class="sidebar">
 
         <ul class="sidebar-nav" id="sidebar-nav">
-
             <li class="nav-item">
                 <a class="nav-link " href="{{ url('/') }}">
                     <i class="bi bi-grid"></i>
@@ -171,11 +170,6 @@
                             <i class="bi bi-circle"></i><span>Data Pembeli</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ url('pembeli/tambah') }}">
-                            <i class="bi bi-circle"></i><span>Tambah Pembeli</span>
-                        </a>
-                    </li>
                 </ul>
             </li><!-- End Tables Nav -->
 
@@ -189,11 +183,6 @@
                     <li>
                         <a href="{{ url('sq') }}">
                             <i class="bi bi-circle"></i><span>Data Sales Quotation</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ url('sq-input') }}">
-                            <i class="bi bi-circle"></i><span>Tambah Sales Quotation</span>
                         </a>
                     </li>
                 </ul>

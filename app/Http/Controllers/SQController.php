@@ -2,17 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BOM;
-use App\Models\BOMList;
 use App\Models\Produk;
-use App\Models\Bahan;
-use App\Models\MO;
-use App\Models\RFQ;
-use App\Models\RFQList;
 use App\Models\Pembeli;
 use App\Models\SQ;
 use App\Models\SQList;
-use PDF;
 use Illuminate\Http\Request;
 
 class SQController extends Controller
@@ -24,6 +17,14 @@ class SQController extends Controller
         return view('sq.sq', ['sqs' => $sq]);
     }
 
+    public function sqInput()
+    {
+        $pembeli = Pembeli::get();
+        $newSQCode = SQ::generateUniqueKodeSq();
+
+        return view('sq.sq-input', ['pembelis' => $pembeli, 'newSQCode' => $newSQCode]);
+    }
+
     public function so()
     {
         $sq = SQ::join('pembeli', 'sq.kode_pembeli', '=', 'pembeli.id')
@@ -31,29 +32,18 @@ class SQController extends Controller
         return view('sq.so', ['sqs' => $sq]);
     }
 
-    public function sqInput()
-    {
-        $pembeli = Pembeli::get();
-        return view('sq.sq-input', ['pembelis' => $pembeli]);
-    }
-
     public function upload(Request $request)
     {
-        // $this->validate($request, [
-        //     'kode_bom' => 'required',
-        //     'kode_produk' => 'required',
-        //     'kuantitas' => 'kuantitas',
-        // ]);
         $tanggal = date("Y-m-d");
-        SQ::create([
+        $sq = SQ::create([
             'kode_sq' => $request->kode_sq,
             'kode_pembeli' => $request->kode_pembeli,
-            'tanggal_order'=> $tanggal,
+            'tanggal_order' => $tanggal,
             'status' => 1,
             'total_harga' => 0,
             'metode_pembayaran' => 0
         ]);
-        return redirect('sq-input-item/' . $request->kode_sq);
+        return redirect()->route('sq-input-item/', ['kode_sq' => $sq->kode_sq]);
     }
 
     public function sqInputItems($kode_sq)
@@ -86,7 +76,7 @@ class SQController extends Controller
 
         return redirect('sq-input-item/' . $request->kode_sq);
     }
-    
+
     public function soInputItems($kode_sq)
     {
         $sq = SQ::join('pembeli', 'sq.kode_pembeli', '=', 'pembeli.id')
@@ -160,16 +150,18 @@ class SQController extends Controller
         return redirect('so');
     }
 
-    public function deleteSQ($kode_sq){
+    public function deleteSQ($kode_sq)
+    {
         $sq_list = SQList::where('kode_sq', $kode_sq);
         $sq_list->delete();
 
         $sq = SQ::find($kode_sq);
         $sq->delete();
-       return redirect('sq/');
+        return redirect('sq/');
     }
 
-    public function deleteListSQ($kode_sq_list){
+    public function deleteListSQ($kode_sq_list)
+    {
         $sq_list = SQList::find($kode_sq_list);
         $product = Produk::find($sq_list->kode_produk);
         $harga = $product->harga;
@@ -181,10 +173,11 @@ class SQController extends Controller
         $sq->save();
 
         $sq_list->delete();
-       return redirect('sq-input-item/' . $sq_list->kode_sq);
+        return redirect('sq-input-item/' . $sq_list->kode_sq);
     }
 
-    public function getPDF($kode_sq){
+    public function getPDF($kode_sq)
+    {
         $sqList = SQList::join('produk', 'sq_list.kode_produk', '=', 'produk.id')
             ->where('sq_list.kode_sq', $kode_sq)
             ->get(['sq_list.*', 'produk.nama', 'produk.harga']);
@@ -193,8 +186,5 @@ class SQController extends Controller
             ->get(['sq.*', 'pembeli.nama', 'pembeli.alamat']);
 
         return view('sq.so-invoice', ['sqlist' => $sqList, 'sq' => $sq]);
-
-        // $pdf = app('dompdf.wrapper')->loadView('sq.so-invoice', ['sqlist' => $sqList, 'sq' => $sq]);
-        // return $pdf->stream('invoice-sq.pdf');
     }
 }

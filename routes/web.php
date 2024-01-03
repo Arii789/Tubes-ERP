@@ -43,28 +43,28 @@ Route::prefix('Manufacture')->group(function () {
     Route::put('/bahan/update/{id}', [BahanController::class, 'update'])->name('bahan-update');
     Route::get('/bahan/delete/{id}', [BahanController::class, 'destroy'])->name('bahan-delete');
     Route::get('/cetak-bahan', [BahanController::class, 'cetakBahan'])->name('cetak-bahan');
+
+    Route::get('/mo', [MoController::class, 'manufacture']);
+    Route::get('/mo-input', [MoController::class, 'manufactureOrder']);
+    Route::post('/mo-input', [MoController::class, 'moUpload']);
+    Route::put('/mo/update/{kode_mo}', [MoController::class, 'moUpdate']);
+    Route::get('/mo-ca/{kode_bom}', [MoController::class, 'caItems']);
+    Route::post('/mo-produce/{kode_mo}', [MoController::class, 'moProduce']);
+    Route::post('/mo-done/{kode_mo}', [MoController::class, 'moProsesProduce']);
+    Route::get('/mo-delete/{kode_mo}', [MoController::class, 'deleteMo']);
+    Route::get('/mo/cetak', [MoController::class, 'cetakMo'])->name('Mo-cetak');
 });
 
 Route::prefix('bom')->group(function () {
-    Route::get('/bom', [BOMController::class,'material']);
-    Route::get('/input-bom', [BOMController::class,'materialInput']);
-    Route::post('/input-bom', [BOMController::class,'upload']);
-    Route::get('/input-item-bom/{kode_bom}', [BOMController::class,'materialInputItems']);
-    Route::post('/input-item-bom', [BOMController::class,'uploadList']);
-    Route::get('/bom-delete-item/{kode_bom_list}', [BOMController::class,'deleteList']);
-    Route::get('/bom-delete/{kode_bom}', [BOMController::class,'deleteBom']);
+    Route::get('/bom', [BOMController::class, 'material']);
+    Route::get('/input-bom', [BOMController::class, 'materialInput']);
+    Route::post('/input-bom', [BOMController::class, 'upload']);
+    Route::get('/input-item-bom/{kode_bom}', [BOMController::class, 'materialInputItems']);
+    Route::post('/input-item-bom', [BOMController::class, 'uploadList']);
+    Route::get('/bom-delete-item/{kode_bom_list}', [BOMController::class, 'deleteList']);
+    Route::get('/bom-delete/{kode_bom}', [BOMController::class, 'deleteBom']);
     Route::get('/cetak-bom', [BOMController::class, 'cetakBom'])->name('cetakBom');
 });
-
-Route::get('Manufacture/mo', [MoController::class, 'manufacture']);
-Route::get('Manufacture/mo-input', [MoController::class, 'manufactureOrder']);
-Route::post('Manufacture/mo-input', [MoController::class, 'moUpload']);
-Route::put('Manufacture/mo/update/{kode_mo}', [MoController::class, 'moUpdate']);
-Route::get('Manufacture/mo-ca/{kode_bom}', [MoController::class, 'caItems']);
-Route::post('Manufacture/mo-produce/{kode_mo}', [MoController::class, 'moProduce']);
-Route::post('Manufacture/mo-done/{kode_mo}', [MoController::class, 'moProsesProduce']);
-Route::get('Manufacture/mo-delete/{kode_mo}', [MoController::class, 'deleteMo']);
-Route::get('Manufacture/mo/cetak', [MoController::class, 'cetakMo'])->name('Mo-cetak');
 
 Route::get('rfq', [RfqController::class, 'rfq']);
 Route::get('po', [RfqController::class, 'po']);
@@ -79,6 +79,10 @@ Route::post('po/create-bill', [RfqController::class, 'poCreateBill']);
 Route::get('po-invoice/{kode_rfq}', [RfqController::class, 'getPDF']);
 Route::get('rfq-delete-item/{kode_rfq_list}', [RfqController::class, 'deleteList']);
 Route::get('rfq-delete/{kode_rfq}', [RfqController::class, 'deleteRfq']);
+
+// Route::prefix('bom')->group(function () {
+
+// });
 
 Route::get('vendor', [VendorController::class, 'index']);
 Route::get('vendor/tambah', [VendorController::class, 'create']);
@@ -95,8 +99,8 @@ Route::put('pembeli/update/{id}', [PembeliController::class, 'update'])->name('p
 Route::get('pembeli/delete/{id}', [PembeliController::class, 'destroy'])->name('pembeli-delete');
 
 Route::get('sq', [SQController::class, 'sq']);
-Route::get('so', [SQController::class, 'so']);
 Route::get('sq-input', [SQController::class, 'sqInput']);
+Route::get('so', [SQController::class, 'so']);
 Route::post('sq-input', [SQController::class, 'upload']);
 Route::get('sq-input-item/{kode_sq}', [SQController::class, 'sqInputItems']);
 Route::post('sq-input-item', [SQController::class, 'sqUploadItems']);

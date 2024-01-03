@@ -23,7 +23,7 @@
                             <!-- General Form Elements -->
                             <form method="post" action="{{ route('rfq.upload') }}">
                                 @csrf
-                                
+
                                 <div class="row mb-3">
                                     <label for="inputText" class="col-sm-2 col-form-label">Kode RFQ</label>
                                     <div class="col-sm-10">

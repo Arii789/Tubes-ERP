@@ -17,20 +17,20 @@ class RfqController extends Controller
             ->get(['rfq.*', 'vendor.nama']);
         return view('rfq.rfq', ['rfqs' => $rfq]);
     }
-
-    public function po()
-    {
-        $rfq = RFQ::join('vendor', 'rfq.kode_vendor', '=', 'vendor.id')
-            ->get(['rfq.*', 'vendor.nama']);
-        return view('rfq.po', ['rfqs' => $rfq]);
-    }
-
+    
     public function rfqInput()
     {
         $vendors = Vendor::all();
         $newRFQCode = RFQ::generateUniqueKodeRfq();
 
         return view('rfq.rfq-input', ['vendors' => $vendors, 'newRFQCode' => $newRFQCode]);
+    }
+
+    public function po()
+    {
+        $rfq = RFQ::join('vendor', 'rfq.kode_vendor', '=', 'vendor.id')
+            ->get(['rfq.*', 'vendor.nama']);
+        return view('rfq.po', ['rfqs' => $rfq]);
     }
 
     public function upload(Request $request)

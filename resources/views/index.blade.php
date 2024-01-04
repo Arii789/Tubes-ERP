@@ -1,4 +1,5 @@
 @extends('mainDashboard')
+<link rel="icon" href="{{ asset('assets/img/favicon.png') }}" type="image/png">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <main id="main" class="main">
     <div class="pagetitle">
@@ -37,24 +38,24 @@
     </section>
 </main><!-- End #main -->
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         fetch('/get-chart-data')
             .then(response => response.json())
             .then(data => {
                 const produkLabels = data.produk.map(product => product.nama);
-                const produkPrices = data.produk.map(product => product.harga);
-                renderBarChart('myBarChart', 'Prices', produkLabels, produkPrices);
+                const produkStok = data.produk.map(product => product.stok);
+                renderBarChart('myBarChart', 'Stock', produkLabels, produkStok);
 
                 const bahanLabels = data.bahan.map(bahan => bahan.nama);
-                const bahanPrices = data.bahan.map(bahan => bahan.harga);
-                renderBarChart('myBahanChart', 'Prices', bahanLabels, bahanPrices);
+                const bahanStok = data.bahan.map(bahan => bahan.stok);
+                renderBarChart('myBahanChart', 'Stock', bahanLabels, bahanStok);
             });
 
         updateLastUpdatedTime();
         // ...
     });
 
-    function renderBarChart(chartId, label, labels, prices) {
+    function renderBarChart(chartId, label, labels, stok) {
         var ctx = document.getElementById(chartId).getContext('2d');
         var myBarChart = new Chart(ctx, {
             type: 'bar',
@@ -62,7 +63,7 @@
                 labels: labels,
                 datasets: [{
                     label: label,
-                    data: prices,
+                    data: stok,
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     borderColor: 'rgba(255, 0, 0, 0.2)',
                     borderWidth: 1
@@ -77,6 +78,7 @@
             }
         });
     }
+
 
     function updateLastUpdatedTime() {
         fetch('/get-last-updated-time')
@@ -95,4 +97,3 @@
         return time; // Sesuaikan dengan format yang sesuai
     }
 </script>
-

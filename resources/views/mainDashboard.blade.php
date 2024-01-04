@@ -60,164 +60,222 @@
 
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
-
         <ul class="sidebar-nav" id="sidebar-nav">
-            <li class="nav-item">
-                <a class="nav-link " href="{{ url('/') }}">
+
+            {{-- Dashboard --}}
+            <li class="nav-item ">
+                <a class="nav-link {{ request()->is('/*') ? '' : 'collapsed' }}"
+                    href="{{ url('/') }}">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
-            </li><!-- End Dashboard Nav -->
+            </li>
+
             <!-- side bar manufacture -->
-            <li class="nav-heading">Manufacturing</li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#manufacture-nav" data-bs-toggle="collapse"
-                    href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Manufacture</span><i
+            <li class="nav-heading">Manufacture</li>
+            <li class="nav-item ">
+                <a class="nav-link {{ request()->is('Manufacture/produk*') || request()->is('Manufacture/bahan*') ? '' : 'collapsed' }}"
+                    data-bs-target="#manufacture-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>Manufacturing</span><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="manufacture-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+                <ul id="manufacture-nav"
+                    class="nav-content {{ request()->is('Manufacture/produk*') || request()->is('Manufacture/bahan*') ? 'collapse show' : 'collapse' }}"
+                    data-bs-parent="#sidebar-nav">
+
                     <li>
-                        <a href="{{ url('Manufacture/produk') }}">
+                        <a href="{{ url('/Manufacture/produk') }}"
+                            class="{{ request()->is('Manufacture/produk*') ? 'active' : '' }}">
                             <i class="bi bi-circle"></i><span>Produk</span>
                         </a>
                     </li>
+
                     <li>
-                        <a href="{{ url('Manufacture/bahan') }}">
+                        <a href="{{ url('/Manufacture/bahan') }}"
+                            class="{{ request()->is('Manufacture/bahan*') ? 'active' : '' }}">
                             <i class="bi bi-circle"></i><span>Bahan</span>
                         </a>
                     </li>
                 </ul>
-            </li><!-- End Components Nav -->
-            <!-- side bar BOM -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#BOM-nav" data-bs-toggle="collapse" href="#">
+            </li>
+
+            <li class="nav-item ">
+                <a class="nav-link {{ request()->is('bom/bom*') || request()->is('bom/input-bom*') ? '' : 'collapsed' }}"
+                    data-bs-target="#BOM-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-menu-button-wide"></i><span>Bill Of Materials</span><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="BOM-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+                <ul id="BOM-nav"
+                    class="nav-content {{ request()->is('bom/bom*') || request()->is('bom/input-bom*') ? 'collapse show' : 'collapse' }}"
+                    data-bs-parent="#sidebar-nav">
+
                     <li>
-                        <a href="{{ url('/bom/bom') }}">
+                        <a href="{{ url('/bom/bom') }}"
+                            class="{{ request()->is('bom/bom*') ? 'active' : '' }}">
                             <i class="bi bi-circle"></i><span>Data Bill Of Materials</span>
                         </a>
                     </li>
                 </ul>
-            </li><!-- End Components Nav -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#MO-nav" data-bs-toggle="collapse" href="#">
+            </li>
+
+            <li class="nav-item ">
+                <a class="nav-link {{ request()->is('Manufacture/mo*') || request()->is('Manufacture/mo-input*') ? '' : 'collapsed' }}"
+                    data-bs-target="#MO-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-menu-button-wide"></i><span>Manufacture Order</span><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="MO-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+                <ul id="MO-nav"
+                    class="nav-content {{ request()->is('Manufacture/mo*') || request()->is('Manufacture/mo-input*') ? 'collapse show' : 'collapse' }}"
+                    data-bs-parent="#sidebar-nav">
+
                     <li>
-                        <a href="{{ url('Manufacture/mo') }}">
+                        <a href="{{ url('/Manufacture/mo') }}"
+                            class="{{ request()->is('Manufacture/mo*') ? 'active' : '' }}">
                             <i class="bi bi-circle"></i><span>Data Manufacture Order</span>
                         </a>
                     </li>
                 </ul>
-            </li><!-- End Components Nav -->
+            </li>
+
             <li class="nav-heading">Purchasing</li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#vendor-nav" data-bs-toggle="collapse" href="#">
+            <li class="nav-item ">
+                <a class="nav-link {{ request()->is('vendor*') || request()->is('vendor/tambah*') ? '' : 'collapsed' }}"
+                    data-bs-target="#vendor-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-menu-button-wide"></i><span>Vendor</span><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="vendor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+                <ul id="vendor-nav"
+                    class="nav-content {{ request()->is('vendor*') || request()->is('vendor/tambah*') ? 'collapse show' : 'collapse' }}"
+                    data-bs-parent="#sidebar-nav">
+
                     <li>
-                        <a href="{{ url('vendor') }}">
+                        <a href="{{ url('/vendor') }}" class="{{ request()->is('vendor*') ? 'active' : '' }}">
                             <i class="bi bi-circle"></i><span>Data Vendor</span>
                         </a>
                     </li>
                 </ul>
-            </li><!-- End Components Nav -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#rfq-nav" data-bs-toggle="collapse" href="#">
+            </li>
+
+            <li class="nav-item ">
+                <a class="nav-link {{ request()->is('rfq*') || request()->is('rfq-input*') ? '' : 'collapsed' }}"
+                    data-bs-target="#rfq-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-menu-button-wide"></i><span>Request For Quotation</span><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="rfq-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+                <ul id="rfq-nav"
+                    class="nav-content {{ request()->is('rfq*') || request()->is('rfq-input*') ? 'collapse show' : 'collapse' }}"
+                    data-bs-parent="#sidebar-nav">
+
                     <li>
-                        <a href="{{ url('rfq') }}">
-                            <i class="bi bi-circle"></i><span>Data RFQ</span>
+                        <a href="{{ url('/rfq') }}" class="{{ request()->is('rfq*') ? 'active' : '' }}">
+                            <i class="bi bi-circle"></i><span>Data Request For Quotation</span>
                         </a>
                     </li>
                 </ul>
-            </li><!-- End Components Nav -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#PO-nav" data-bs-toggle="collapse" href="#">
+            </li>
+
+            <li class="nav-item ">
+                <a class="nav-link {{ request()->is('po*') || request()->is('po-input-item*') ? '' : 'collapsed' }}"
+                    data-bs-target="#PO-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-menu-button-wide"></i><span>Purchase Orders</span><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="PO-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+                <ul id="PO-nav"
+                    class="nav-content {{ request()->is('po*') || request()->is('po-input-item*') ? 'collapse show' : 'collapse' }}"
+                    data-bs-parent="#sidebar-nav">
+
                     <li>
-                        <a href="{{ url('po') }}">
-                            <i class="bi bi-circle"></i><span>Data Purchase Order</span>
+                        <a href="{{ url('/po') }}" class="{{ request()->is('po*') ? 'active' : '' }}">
+                            <i class="bi bi-circle"></i><span>Data Purchase Orders</span>
                         </a>
                     </li>
                 </ul>
-            </li><!-- End Components Nav -->
-            <li class="nav-heading">Sales</li>
+            </li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#pembeli-nav" data-bs-toggle="collapse"
-                    href="#">
+            <li class="nav-heading">Sales</li>
+            <li class="nav-item ">
+                <a class="nav-link {{ request()->is('pembeli*') || request()->is('pembeli/tambah*') ? '' : 'collapsed' }}"
+                    data-bs-target="#pembeli-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-menu-button-wide"></i><span>Pembeli</span><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="pembeli-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+                <ul id="pembeli-nav"
+                    class="nav-content {{ request()->is('pembeli*') || request()->is('pembeli/tambah*') ? 'collapse show' : 'collapse' }}"
+                    data-bs-parent="#sidebar-nav">
+
                     <li>
-                        <a href="{{ url('pembeli') }}">
+                        <a href="{{ url('/pembeli') }}" class="{{ request()->is('pembeli*') ? 'active' : '' }}">
                             <i class="bi bi-circle"></i><span>Data Pembeli</span>
                         </a>
                     </li>
                 </ul>
-            </li><!-- End Tables Nav -->
+            </li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#quotation-nav" data-bs-toggle="collapse"
-                    href="#">
+            <li class="nav-item ">
+                <a class="nav-link {{ request()->is('sq*') || request()->is('sq-input*') ? '' : 'collapsed' }}"
+                    data-bs-target="#quotation-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-menu-button-wide"></i><span>Sales Quotation</span><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="quotation-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+                <ul id="quotation-nav"
+                    class="nav-content {{ request()->is('sq*') || request()->is('sq-input*') ? 'collapse show' : 'collapse' }}"
+                    data-bs-parent="#sidebar-nav">
+
                     <li>
-                        <a href="{{ url('sq') }}">
+                        <a href="{{ url('/sq') }}" class="{{ request()->is('sq*') ? 'active' : '' }}">
                             <i class="bi bi-circle"></i><span>Data Sales Quotation</span>
                         </a>
                     </li>
                 </ul>
-            </li><!-- End Forms Nav -->
+            </li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#order-nav" data-bs-toggle="collapse" href="#">
+            <li class="nav-item ">
+                <a class="nav-link {{ request()->is('so*') || request()->is('so-input-item*') ? '' : 'collapsed' }}"
+                    data-bs-target="#order-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-menu-button-wide"></i><span>Sales Orders</span><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="order-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+                <ul id="order-nav"
+                    class="nav-content {{ request()->is('so*') || request()->is('so-input-item*') ? 'collapse show' : 'collapse' }}"
+                    data-bs-parent="#sidebar-nav">
+
                     <li>
-                        <a href="{{ url('so') }}">
-                            <i class="bi bi-circle"></i><span>Data Sales Order</span>
+                        <a href="{{ url('/so') }}" class="{{ request()->is('so*') ? 'active' : '' }}">
+                            <i class="bi bi-circle"></i><span>Data Sales Orders</span>
                         </a>
                     </li>
                 </ul>
-            </li><!-- End Forms Nav -->
+            </li>
 
             <li class="nav-heading">Accounting</li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#accounting-nav" data-bs-toggle="collapse"
-                    href="#">
+            <li class="nav-item ">
+                <a class="nav-link {{ request()->is('accounting*') || request()->is('accounting-input-item*') ? '' : 'collapsed' }}"
+                    data-bs-target="#accounting-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-menu-button-wide"></i><span>Accounting</span><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="accounting-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+                <ul id="accounting-nav"
+                    class="nav-content {{ request()->is('accounting*') || request()->is('accounting-input-item*') ? 'collapse show' : 'collapse' }}"
+                    data-bs-parent="#sidebar-nav">
+
                     <li>
-                        <a href="/accounting">
+                        <a href="{{ url('/accounting') }}" class="{{ request()->is('accounting*') ? 'active' : '' }}">
                             <i class="bi bi-circle"></i><span>Data Accounting</span>
                         </a>
                     </li>
                 </ul>
             </li>
+
             <li class="nav-item ">
                 <a class="nav-link {{ request()->is('employees/karyawan*') || request()->is('employees/departemen*') ? '' : 'collapsed' }}"
                     data-bs-target="#employees-nav" data-bs-toggle="collapse" href="#">

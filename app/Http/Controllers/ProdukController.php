@@ -125,8 +125,8 @@ class ProdukController extends Controller
 
     public function getChartData()
     {
-        $produkChartData = Produk::select('nama', 'harga')->get();
-        $bahanChartData = Bahan::select('nama', 'harga')->get();
+        $produkChartData = Produk::select('nama', 'stok')->get();
+        $bahanChartData = Bahan::select('nama', 'stok')->get();
 
         return response()->json(['produk' => $produkChartData, 'bahan' => $bahanChartData]);
     }

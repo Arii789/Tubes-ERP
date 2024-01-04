@@ -217,6 +217,32 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link {{ request()->is('employees/karyawan*') || request()->is('employees/departemen*') ? '' : 'collapsed' }}"
+                    data-bs-target="#employees-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>Employees</span><i
+                        class="bi bi-chevron-down ms-auto"></i>
+                </a>
+
+                <ul id="employees-nav"
+                    class="nav-content {{ request()->is('employees/karyawan*') || request()->is('employees/departemen*') ? 'collapse show' : 'collapse' }}"
+                    data-bs-parent="#sidebar-nav">
+
+                    <li>
+                        <a href="{{ url('/employees/karyawan') }}"
+                            class="{{ request()->is('employees/karyawan*') ? 'active' : '' }}">
+                            <i class="bi bi-circle"></i><span>Karyawan</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url('/employees/departemen') }}"
+                            class="{{ request()->is('employees/departemen*') ? 'active' : '' }}">
+                            <i class="bi bi-circle"></i><span>Departemen</span>
+                        </a>
+                    </li>
+                </ul>
             </li><!-- End Tables Nav -->
     </aside><!-- End Sidebar-->
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2024 at 06:23 PM
+-- Generation Time: Jan 04, 2024 at 12:00 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -44,8 +44,8 @@ CREATE TABLE `bahan` (
 --
 
 INSERT INTO `bahan` (`id`, `nama`, `kode`, `bahan_qr`, `harga`, `stok`, `gambar`, `created_at`, `updated_at`) VALUES
-(11, 'Gagang Kayu', 'KDB-0001', 59100875, 3000, 45, '1704291437_gagang kayu.png', '2024-01-03 07:17:17', '2024-01-03 10:10:29'),
-(12, 'Ijuk Sapu', 'KDB-0012', 90612841, 3000, 0, '1704291460_ijuk sapu.png', '2024-01-03 07:17:40', '2024-01-03 10:08:36'),
+(11, 'Gagang Kayu', 'KDB-0001', 59100875, 3000, 40, '1704291437_gagang kayu.png', '2024-01-03 07:17:17', '2024-01-03 23:16:58'),
+(12, 'Ijuk Sapu', 'KDB-0012', 90612841, 3000, 50, '1704291460_ijuk sapu.png', '2024-01-03 07:17:40', '2024-01-03 23:16:58'),
 (13, 'Kain Pel', 'KDB-0013', 19615344, 4000, 50, '1704291479_kain pel.png', '2024-01-03 07:17:59', '2024-01-03 10:10:29'),
 (14, 'Kawat', 'KDB-0014', 96779350, 2000, 100, '1704291498_kawat.png', '2024-01-03 07:18:18', '2024-01-03 10:05:27'),
 (15, 'Plastik', 'KDB-0015', 39848825, 1000, 1100, '1704291546_Plastik.jpg', '2024-01-03 07:19:06', '2024-01-03 10:13:56');
@@ -163,7 +163,8 @@ CREATE TABLE `mo` (
 INSERT INTO `mo` (`kode_mo`, `kode_bom`, `kuantitas`, `tanggal`, `status`, `created_at`, `updated_at`) VALUES
 ('KDMO-0001', 'KDBM-0001', 1, '2024-01-03', 5, NULL, NULL),
 ('KDMO-0002', 'KDBM-0002', 10, '2024-01-03', 5, NULL, NULL),
-('KDMO-0003', 'KDBM-0003', 100, '2024-01-03', 5, NULL, NULL);
+('KDMO-0003', 'KDBM-0003', 100, '2024-01-03', 5, NULL, NULL),
+('KDMO-0004', 'KDBM-0001', 1, '2024-01-04', 5, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -241,7 +242,7 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`id`, `nama`, `kode`, `produk_qr`, `harga`, `stok`, `gambar`, `created_at`, `updated_at`) VALUES
-(10, 'Sapu Lidi', 'KDP-0001', 21161099, 20000, 3, '1704291413_SAPULIDI.png', '2024-01-03 02:41:14', '2024-01-03 10:18:04'),
+(10, 'Sapu Lidi', 'KDP-0001', 21161099, 20000, 8, '1704291413_SAPULIDI.png', '2024-01-03 02:41:14', '2024-01-03 23:16:58'),
 (11, 'Pel Lantai', 'KDP-0011', 94069909, 25000, 7, '1704291145_pel lantai.png', '2024-01-03 07:12:25', '2024-01-03 10:18:04'),
 (12, 'Tempat Sampah Plastik', 'KDP-0012', 46048979, 6000, 15, '1704291170_tempat sampah.png', '2024-01-03 07:12:50', '2024-01-03 10:18:04');
 
@@ -273,7 +274,8 @@ INSERT INTO `rfq` (`kode_rfq`, `kode_vendor`, `tanggal_order`, `status`, `total_
 ('KDRFQ-0004', 4, '2024-01-03 17:03:40', 5, 200000, 1, '2024-01-03 10:03:40', '2024-01-03 10:05:27'),
 ('KDRFQ-0005', 4, '2024-01-03 17:04:08', 5, 100000, 2, '2024-01-03 10:04:08', '2024-01-03 10:05:48'),
 ('KDRFQ-0006', 4, '2024-01-03 17:11:23', 5, 1000000, 2, '2024-01-03 10:11:23', '2024-01-03 10:12:10'),
-('KDRFQ-0007', 4, '2024-01-03 17:12:31', 5, 10000000, 1, '2024-01-03 10:12:31', '2024-01-03 10:13:17');
+('KDRFQ-0007', 4, '2024-01-03 17:12:31', 5, 10000000, 1, '2024-01-03 10:12:31', '2024-01-03 10:13:17'),
+('KDRFQ-0008', 4, '2024-01-04 06:15:14', 5, 450000, 1, '2024-01-03 23:15:14', '2024-01-03 23:16:05');
 
 -- --------------------------------------------------------
 
@@ -299,7 +301,8 @@ INSERT INTO `rfq_list` (`kode_rfq_list`, `kode_rfq`, `kode_bahan`, `kuantitas`) 
 (30, 'KDRFQ-0004', '14', 100),
 (31, 'KDRFQ-0005', '15', 100),
 (32, 'KDRFQ-0006', '15', 1000),
-(33, 'KDRFQ-0007', '15', 10000);
+(33, 'KDRFQ-0007', '15', 10000),
+(34, 'KDRFQ-0008', '12', 150);
 
 -- --------------------------------------------------------
 
@@ -347,6 +350,60 @@ INSERT INTO `sq_list` (`kode_sq_list`, `kode_sq`, `kode_produk`, `kuantitas`) VA
 (31, 'KDSL-0002', '12', 85),
 (32, 'KDSL-0002', '10', 2),
 (33, 'KDSL-0002', '11', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_departemen`
+--
+
+CREATE TABLE `tb_departemen` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `nama_departemen` varchar(255) NOT NULL,
+  `manager` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tb_departemen`
+--
+
+INSERT INTO `tb_departemen` (`id`, `nama_departemen`, `manager`, `created_at`, `updated_at`) VALUES
+(3, 'Team Kontraktor', 'Shohebul', '2024-01-04 03:51:32', '2024-01-04 03:51:32'),
+(4, 'Team Support', 'Kokoh', '2024-01-04 03:54:30', '2024-01-04 03:54:30'),
+(5, 'Team IT', 'Pak Gemoy', '2024-01-04 03:58:09', '2024-01-04 03:58:09'),
+(6, 'Team Office', 'Pak Por', '2024-01-04 03:58:53', '2024-01-04 03:58:53');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_karyawan`
+--
+
+CREATE TABLE `tb_karyawan` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_departemen` bigint(20) UNSIGNED DEFAULT NULL,
+  `nama` varchar(255) NOT NULL,
+  `posisi` varchar(255) NOT NULL,
+  `telp` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `departemen` varchar(255) DEFAULT NULL,
+  `manager` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tb_karyawan`
+--
+
+INSERT INTO `tb_karyawan` (`id`, `id_departemen`, `nama`, `posisi`, `telp`, `email`, `departemen`, `manager`, `created_at`, `updated_at`) VALUES
+(5, 3, 'Shohebul', 'Pengelas', '628974349343', 'Shohebul@gmail.kom', 'Team Kontraktor', 'Shohebul', '2024-01-04 03:50:51', '2024-01-04 03:51:49'),
+(6, 6, 'Kokoh', 'Pendoa', '628674394502', 'paus_tad@gmail.jom', 'Team Support', 'Shohebul', '2024-01-04 03:53:07', '2024-01-04 03:59:16'),
+(7, 6, 'Pak Por', 'Accounting', '62987583293', 'Polisibaik@gmail.fog', 'Team Office', 'Kokoh', '2024-01-04 03:55:44', '2024-01-04 03:59:58'),
+(8, 6, 'Sony', 'Sales', '62896543213', 'pedotaselole@takdung.dung', 'Team Support', 'Pak Gemoy', '2024-01-04 03:56:32', '2024-01-04 03:59:45'),
+(9, 6, 'Pak Gemoy', 'IT Support', '624356234234', 'pakwowo@dua.com', 'Team IT', 'Pak Gemoy', '2024-01-04 03:57:39', '2024-01-04 03:59:28');
 
 -- --------------------------------------------------------
 
@@ -494,6 +551,19 @@ ALTER TABLE `sq_list`
   ADD PRIMARY KEY (`kode_sq_list`);
 
 --
+-- Indexes for table `tb_departemen`
+--
+ALTER TABLE `tb_departemen`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_karyawan`
+--
+ALTER TABLE `tb_karyawan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tb_karyawan_id_departemen_foreign` (`id_departemen`);
+
+--
 -- Indexes for table `temp_produce`
 --
 ALTER TABLE `temp_produce`
@@ -562,7 +632,7 @@ ALTER TABLE `produk`
 -- AUTO_INCREMENT for table `rfq_list`
 --
 ALTER TABLE `rfq_list`
-  MODIFY `kode_rfq_list` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `kode_rfq_list` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `sq_list`
@@ -571,10 +641,22 @@ ALTER TABLE `sq_list`
   MODIFY `kode_sq_list` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
+-- AUTO_INCREMENT for table `tb_departemen`
+--
+ALTER TABLE `tb_departemen`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `tb_karyawan`
+--
+ALTER TABLE `tb_karyawan`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `temp_produce`
 --
 ALTER TABLE `temp_produce`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -587,6 +669,16 @@ ALTER TABLE `users`
 --
 ALTER TABLE `vendor`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `tb_karyawan`
+--
+ALTER TABLE `tb_karyawan`
+  ADD CONSTRAINT `tb_karyawan_id_departemen_foreign` FOREIGN KEY (`id_departemen`) REFERENCES `tb_departemen` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
